@@ -23,4 +23,13 @@ public class Congelamiento implements Serializable {
     
     @Column(name = "fecha_complemento", nullable = false)
     private String fechaComplemento;
+    
+    //Pruebas por error de compilación - Anthony
+    public Long getIdCongelamiento() {
+        return idCongelamiento;
+    }
+
+    public void setIdCongelamiento(Long idCongelamiento) {
+        this.idCongelamiento = idCongelamiento;
+    }
 }

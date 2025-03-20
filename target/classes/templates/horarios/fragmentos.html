@@ -45,14 +45,14 @@
 
                                 <div class="mb-3">
                                     <label for="idProfesor">Profesores</label>
-                                    <select name="idProfesor" class="form-select" aria-label="Default select example">
+                                    <select name="profesor.idProfesor" class="form-select" aria-label="Default select example">
                                         <option th:each="c : ${profesores}" 
                                                 th:value="${c.idProfesor}">[[${c.idProfesor}]]</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="idMateria">Materias</label>
-                                    <select name="idMateria" class="form-select" aria-label="Default select example">
+                                    <select name="materia.idMateria" class="form-select" aria-label="Default select example">
                                         <option th:each="b : ${materias}" 
                                                 th:value="${b.idMateria}">[[${b.idMateria}]]</option>
                                     </select>
@@ -110,8 +110,8 @@
                                     <tbody>
                                         <tr th:each="horarios : ${horarios}">
                                             <td style="text-align: center">[[${horarios.idHorario}]]</td>
-                                            <td style="text-align: center">[[${horarios.idProfesor}]]</td>
-                                            <td style="text-align: center" >[[${horarios.idMateria}]]</td>
+                                            <td style="text-align: center">[[${horarios.profesor.idProfesor}]]</td>
+                                            <td style="text-align: center" >[[${horarios.materia.idMateria}]]</td>
                                             <td style="text-align: center">[[${horarios.diaSemana}]]</td>
                                             <td style="text-align: center">[[${horarios.horarioInc}]]</td>
                                             <td style="text-align: center">[[${horarios.horarioFin}]]</td>
@@ -144,13 +144,13 @@
         </section>
 
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-        <section th:fragment="editarHorarios">
+        <section th:fragment="editarHorario">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
                           th:action="@{/horarios/guardar}" 
-                          th:object="${horarios}"
+                          th:object="${horario}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
                         <input type="hidden" name="idHorario" th:field="*{idHorario}"/>
@@ -162,21 +162,21 @@
                                     <div class="col">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h4>[[#{accion.actualizar}]]</h4>
+                                                <h4>Actualizar</h4>
                                             </div>
 
                                             <div class="card-body">
 
                                                 <div class="mb-3">
                                                     <label for="idProfesor">Profesor</label>
-                                                    <select name="profesores.idProfesor" th:field="*{profesores.idProfesor}" class="form-select" aria-label="Default select example">
+                                                    <select name="profesor.idProfesor" th:field="*{profesor.idProfesor}" class="form-select" aria-label="Default select example">
                                                         <option th:each="c : ${profesores}" 
                                                                 th:value="${c.idProfesor}">[[${c.codigoProfesor}]]</option>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="idMateria">Materia</label>
-                                                    <select name="materias.idMateria" th:field="*{materias.idMateria}" class="form-select" aria-label="Default select example">
+                                                    <select name="materia.idMateria" th:field="*{materia.idMateria}" class="form-select" aria-label="Default select example">
                                                         <option th:each="c : ${materias}" 
                                                                 th:value="${c.idMateria}">[[${c.codigoMateria}]]</option>
                                                     </select>
@@ -191,13 +191,13 @@
                                                 
                                                   <div class="mb-3">
                                                     <label for="horarioInc">Horario de inicio</label>
-                                                    <input type="text" class="form-control" 
+                                                    <input type="date" class="form-control" 
                                                            name="horarioInc" th:field="*{horarioInc}"
                                                            required="true">
                                                 </div>
                                                  <div class="mb-3">
                                                     <label for="horarioFin">Horario de finalizacion</label>
-                                                    <input type="text" class="form-control" 
+                                                    <input type="date" class="form-control" 
                                                            name="horarioFin" th:field="*{horarioFin}"
                                                            required="true">
                                                 </div>
@@ -223,7 +223,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/horarios/eliminar/}+${horarios.idHorarios}"
+                        <a th:href="@{/horarios/eliminar/}+${horarios.idHorario}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> Eliminar
                         </a>

@@ -27,4 +27,13 @@ public class Rol implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = true)
     private Usuario usuario;
+    
+     //Pruebas por error de compilación - Anthony
+    public Long getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(Long idRol) {
+        this.idRol = idRol;
+    }
 }

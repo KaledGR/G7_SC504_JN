@@ -46,5 +46,14 @@ public class Estudiante implements Serializable {
      
      @OneToMany(mappedBy = "estudiante")
     private List<Notas> notas;
+     
+     //Pruebas por error de compilación - Anthony
+    public Long getIdEstudiante() {
+        return idEstudiante;
+    }
+
+    public void setIdEstudiante(Long idEstudiante) {
+        this.idEstudiante = idEstudiante;
+    }
 
 }
