@@ -12,14 +12,14 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="profesores")
+@Table(name = "profesores")
 public class Profesores implements Serializable {
-    
+
     private static final long serialVersionUID = 1l;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_profesor")
+    @Column(name = "id_profesor")
     private Long idProfesor;
     @Column(name = "cedula_profesor")
     private String cedulaProfesor;
@@ -29,10 +29,8 @@ public class Profesores implements Serializable {
     private String apellido;
     @Column(name = "codigo_profesor")
     private String codigoProfesor;
-    
-    
-     @OneToMany
-    @JoinColumn(name="id_profesor", updatable=false)
+
+    @OneToMany(mappedBy = "profesor")
     private List<Horarios> horarios;
-    
+
 }

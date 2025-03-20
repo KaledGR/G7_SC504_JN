@@ -8,13 +8,13 @@ package com.centroAcademico.SistemaAcademico.Service.Impl;
 import com.centroAcademico.SistemaAcademico.Dao.RolDao;
 import com.centroAcademico.SistemaAcademico.Domain.Usuario;
 
-import com.centroAcademico.SistemaAcademico.Service.UsuarioService;
-import com.centroAcademico.SistemaAcademico.Dao.UsuarioDao;
 import com.centroAcademico.SistemaAcademico.Domain.Rol;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.centroAcademico.SistemaAcademico.Dao.UsuarioDao;
+import com.centroAcademico.SistemaAcademico.Service.UsuarioService;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
