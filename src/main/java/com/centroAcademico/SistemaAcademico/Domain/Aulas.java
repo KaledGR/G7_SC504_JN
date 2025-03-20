@@ -9,7 +9,8 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "Aulas")
-public class Aulas {
+public class Aulas implements Serializable{
+    private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
