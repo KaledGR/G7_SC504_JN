@@ -5,7 +5,6 @@
 package com.centroAcademico.SistemaAcademico.Service.Impl;
 
 
-import com.centroAcademico.SistemaAcademico.Dao.UsuarioDao;
 import com.centroAcademico.SistemaAcademico.Domain.Rol;
 import com.centroAcademico.SistemaAcademico.Domain.Usuario;
 import com.centroAcademico.SistemaAcademico.Service.UsuarioDetailsService;
@@ -20,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.centroAcademico.SistemaAcademico.Dao.UsuarioDao;
 
 /**
  *

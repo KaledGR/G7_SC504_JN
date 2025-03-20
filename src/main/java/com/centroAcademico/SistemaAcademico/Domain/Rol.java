@@ -8,21 +8,23 @@ import lombok.Data;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
-
 @Data
 @Entity
-@Table(name="rol")
-public class Rol implements Serializable{
-    
+@Table(name = "rol")
+public class Rol implements Serializable {
+
     private static final long serialVersionUID = 1l;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_rol")   
+    @Column(name = "id_rol")
     private Long idRol;
     @Column(name = "nombre")
     private String nombre;
-    @Column(name="id_usuario")
-    private Long idUsuario;
-  
+//    @Column(name="id_usuario")
+//    private Long idUsuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = true)
+    private Usuario usuario;
 }

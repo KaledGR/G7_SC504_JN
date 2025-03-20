@@ -18,17 +18,17 @@
                             type="button" 
                             class="btn btn-primary btn-block" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#agregarMaterias">
-                            <i class="fas fa-plus"></i> Agregar Materias
+                            data-bs-target="#agregarRols">
+                            <i class="fas fa-plus"></i> Agregar Rols
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 2 Fragmento para agregar materias, es la ventana modal -->
-        <section th:fragment="agregarMateria">
-            <div id="agregarMaterias" 
+        <!-- 2 Fragmento para agregar rols, es la ventana modal -->
+        <section th:fragment="agregarRol">
+            <div id="agregarRols" 
                  class="modal fade" 
                  tabindex="-1" 
                  aria-labelledby="exampleModalLabel" 
@@ -36,23 +36,23 @@
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title">Agregar Materias</h5>
+                            <h5 class="modal-title">Agregar Roles</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
-                        <form th:action="@{/materias/guardar}" th:object="${materias}"
+                        <form th:action="@{/rol/guardar}" th:object="${rol}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
+
                                 <div class="mb-3">
-                                    <label for="cedulaMaterias">Codigo de la materia</label>
-                                    <input class="text" type="form-control" name="codigoMateria" required="true"/>
+                                    <label for="nombre">Nombre de la rol</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="nombre">Nombre de la materia</label>
-                                    <input type="text" class="form-control" name="nombreMateria" required="true"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="apellido">Descripcion</label>
-                                    <input type="text" class="form-control" name="descripcion" required="true"/>
+                                    <label for="idUsuario">Usuario</label>
+                                    <select name="usuario.idUsuario" class="form-select" aria-label="Default select example">
+                                        <option th:each="b : ${usuarios}" 
+                                                th:value="${b.idUsuario}">[[${b.nombre}]]</option>
+                                    </select>
                                 </div>
 
 
@@ -68,45 +68,45 @@
             </div>
         </section>
 
-        <!-- 3 Sección principal para mostrar la informaccion de la entidad materias -->
-        <section th:fragment="listadoMaterias" id="materias">
+        <!-- 3 Sección principal para mostrar la informaccion de la entidad rols -->
+        <section th:fragment="listadoRoles" id="rols">
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Listado de materias</h4>
+                                <h4>Listado de rols</h4>
                             </div>
-                            <div th:if="${materias != null and !materias.empty}">
+                            <div th:if="${rols != null and !rols.empty}">
                                 <table class="table table-striped table-hover">
                                     <thead class="table-dark">
                                         <tr><th>#</th>
-                                            <th>Id Materias</th>
-                                            <th>Codigo de Materias</th>
+                                            <th>Id Rols</th>
+                                            <th>Codigo de Rols</th>
                                             <th>Nombre</th>
                                             <th>Descripcion</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="materias, contador : ${materias}">
+                                        <tr th:each="rols, contador : ${rols}">
                                             <td>[[${contador.count}]]</td>
-                                            <td>[[${materias.idMateria}]]</td>
-                                            <td>[[${materias.codigoMateria}]]</td>
-                                            <td>[[${materias.nombreMateria}]]</td>
-                                            <td>[[${materias.descripcion}]]</td>
+                                            <td>[[${rols.idRol}]]</td>
+                                            <td>[[${rols.nombre}]]</td>
+                                            <td>[[${rols.usuario.nombre}]]</td>
+
 
                                             <td>
-                                                <a th:href="@{/materias/eliminar/}+${materias.idMateria}"
+                                                <a th:href="@{/rol/eliminar/}+${rols.idRol}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> Eliminar</a>
-                                                <a th:href="@{/materias/modificar/}+${materias.idMateria}"
+                                                <a th:href="@{/rol/modificar/}+${rols.idRol}"
                                                    class="btn btn-success">
                                                     <i class="fas fa-pencil"></i> Modificar</a></td></tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-center p-2" th:if="${materias == null or materias.empty}">
+                            <div class="text-center p-2" th:if="${rols == null or rols.empty}">
                                 <span>La lista esta vacia</span>
                             </div>
                         </div>
@@ -114,8 +114,8 @@
                     <div class="col-md-3">
                         <div class="card text-center bg-success text-white mb-3">
                             <div class="card-body">
-                                <h3>Total de materias</h3>
-                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalMaterias}]]</h4>
+                                <h3>Total de rols</h3>
+                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalRols}]]</h4>
                             </div>
                         </div>
                     </div>
@@ -124,17 +124,17 @@
         </section>
 
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-        <section th:fragment="editarMaterias">
+        <section th:fragment="editarRol">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/materias/guardar}" 
-                          th:object="${materia}"
+                          th:action="@{/rol/guardar}" 
+                          th:object="${rol}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="idMateria" th:field="*{idMateria}"/>                       
-                        <section th:replace="~{materias/fragmentos :: botonesEditar}"/>
+                        <input type="hidden" name="idRol" th:field="*{idRol}"/>                       
+                        <section th:replace="~{rol/fragmentos :: botonesEditar}"/>
                         <div id=details>
                             <div class="container">
                                 <div class="row">
@@ -145,19 +145,19 @@
                                             </div>
 
                                             <div class="modal-body">
+
                                                 <div class="mb-3">
-                                                    <label for="cedulaMaterias">Codigo de la materia</label>
-                                                    <input type="text" class="form-control" name="codigoMateria" th:field="*{codigoMateria}" required="true"/>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="nombre">Nombre de la materia</label>
-                                                    <input type="text" class="form-control" name="nombreMateria"th:field="*{nombreMateria}" required="true"/>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="apellido">Descripcion</label>
-                                                    <input type="text" class="form-control" name="descripcion"th:field="*{descripcion}" required="true"/>
+                                                    <label for="nombre">Nombre de la rol</label>
+                                                    <input type="text" class="form-control" name="nombreRol"th:field="*{nombre}" required="true"/>
                                                 </div>
 
+                                                <div class="mb-3">
+                                                    <label for="idUsuario">Usuario</label>
+                                                    <select name="usuario.idUsuario" class="form-select" th:field="*{usuario.idUsuario}" aria-label="Default select example">
+                                                        <option th:each="b : ${usuarios}" 
+                                                                th:value="${b.idUsuario}">[[${b.nombre}]]</option>
+                                                    </select>
+                                                </div>
 
                                             </div>
                                         </div>
@@ -174,12 +174,12 @@
             <div class="container py-4 mb-4 bg-light">
                 <div class="row">
                     <div class="col-md-4 d-grid">
-                        <a th:href="@{/materias/listado}" class="btn btn-primary">
+                        <a th:href="@{/rol/listado}" class="btn btn-primary">
                             <i class="fas fa-arrow-left"></i> Regresar
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/materias/eliminar/}+${materias.idMateria}"
+                        <a th:href="@{/rol/eliminar/}+${rol.idRol}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> Eliminar
                         </a>

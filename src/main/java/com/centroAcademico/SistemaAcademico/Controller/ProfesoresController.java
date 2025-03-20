@@ -30,15 +30,15 @@ public class ProfesoresController {
     }
     
     @PostMapping("/guardar")
-    public String guardar(Profesores profesores){
+    public String guardar(Profesores profesor){
     
-            profesoresService.save(profesores);
+            profesoresService.save(profesor);
             return "redirect:/profesores/listado";
     }
     
-    @GetMapping("/eliminar/{idProfesores}")
-    public String eliminar(Profesores profesores){
-        profesoresService.delete(profesores);
+    @GetMapping("/eliminar/{idProfesor}")
+    public String eliminar(Profesores profesor){
+        profesoresService.delete(profesor);
         return "redirect:/profesores/listado";
     }
     
