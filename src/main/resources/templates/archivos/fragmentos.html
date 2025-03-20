@@ -18,17 +18,17 @@
                             type="button" 
                             class="btn btn-primary btn-block" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#agregarMaterias">
-                            <i class="fas fa-plus"></i> Agregar Materias
+                            data-bs-target="#agregarArchivos">
+                            <i class="fas fa-plus"></i> Agregar Archivos
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 2 Fragmento para agregar materias, es la ventana modal -->
-        <section th:fragment="agregarMateria">
-            <div id="agregarMaterias" 
+        <!-- 2 Fragmento para agregar archivos, es la ventana modal -->
+        <section th:fragment="agregarArchivos">
+            <div id="agregarArchivos" 
                  class="modal fade" 
                  tabindex="-1" 
                  aria-labelledby="exampleModalLabel" 
@@ -36,23 +36,26 @@
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title">Agregar Materias</h5>
+                            <h5 class="modal-title">Agregar Archivo</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
-                        <form th:action="@{/materias/guardar}" th:object="${materias}"
+                        <form th:action="@{/archivos/guardar}" th:object="${archivos}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
+
+
                                 <div class="mb-3">
-                                    <label for="cedulaMaterias">Codigo de la materia</label>
-                                    <input class="text" type="form-control" name="codigoMateria" required="true"/>
+                                    <label for="idEstudiante">Estudiante</label>
+                                    <select name="estudiante.idEstudiante" class="form-select" aria-label="Default select example">
+                                        <option th:each="b : ${estudiantes}" 
+                                                th:value="${b.idEstudiante}">[[${b.codigoEstudiante}]]</option>
+                                    </select>
                                 </div>
+
+
                                 <div class="mb-3">
-                                    <label for="nombre">Nombre de la materia</label>
-                                    <input type="text" class="form-control" name="nombreMateria" required="true"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="apellido">Descripcion</label>
-                                    <input type="text" class="form-control" name="descripcion" required="true"/>
+                                    <label for="tipoDocumento">Tipo de Documento</label>
+                                    <input type="text" class="form-control" name="tipoDocumento" required="true"/>
                                 </div>
 
 
@@ -68,54 +71,52 @@
             </div>
         </section>
 
-        <!-- 3 Sección principal para mostrar la informaccion de la entidad materias -->
-        <section th:fragment="listadoMaterias" id="materias">
+        <!-- 3 Sección principal para mostrar la informaccion de la entidad archivos -->
+        <section th:fragment="listadoArchivos" id="archivoss">
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Listado de materias</h4>
+                                <h4>Listado de archivos</h4>
                             </div>
-                            <div th:if="${materias != null and !materias.empty}">
+                            <div th:if="${archivos != null and !archivos.empty}">
                                 <table class="table table-striped table-hover">
                                     <thead class="table-dark">
-                                        <tr><th>#</th>
-                                            <th>Id Materias</th>
-                                            <th>Codigo de Materias</th>
-                                            <th>Nombre</th>
-                                            <th>Descripcion</th>
+                                        <tr>
+                                            <th>Id archivo</th>
+                                            <th>Estudiante</th>
+                                            <th>Tipo de documento</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="materias, contador : ${materias}">
-                                            <td>[[${contador.count}]]</td>
-                                            <td>[[${materias.idMateria}]]</td>
-                                            <td>[[${materias.codigoMateria}]]</td>
-                                            <td>[[${materias.nombreMateria}]]</td>
-                                            <td>[[${materias.descripcion}]]</td>
+                                        <tr th:each="archivos : ${archivos}">
+                                            <td style="text-align: center">[[${archivos.idArchivo}]]</td>
+                                            <td style="text-align: center">[[${archivos.estudiante.codigoEstudiante}]]</td>
+                                            <td style="text-align: center">[[${archivos.tipoDocumento}]]</td>
+
 
                                             <td>
-                                                <a th:href="@{/materias/eliminar/}+${materias.idMateria}"
+                                                <a th:href="@{/archivos/eliminar/}+${archivos.idArchivo}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> Eliminar</a>
-                                                <a th:href="@{/materias/modificar/}+${materias.idMateria}"
+                                                <a th:href="@{/archivos/modificar/}+${archivos.idArchivo}"
                                                    class="btn btn-success">
-                                                    <i class="fas fa-pencil"></i> Modificar</a></td></tr>
+                                                    <i class="fas fa-pencil"></i> Actualizar</a></td></tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-center p-2" th:if="${materias == null or materias.empty}">
-                                <span>La lista esta vacia</span>
+                            <div class="text-center p-2" th:if="${archivos == null or archivos.empty}">
+                                <span>Lista vacia</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card text-center bg-success text-white mb-3">
                             <div class="card-body">
-                                <h3>Total de materias</h3>
-                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalMaterias}]]</h4>
+                                <h3>Total de archivos</h3>
+                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalArchivos}]]</h4>
                             </div>
                         </div>
                     </div>
@@ -124,17 +125,18 @@
         </section>
 
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-        <section th:fragment="editarMaterias">
+        <section th:fragment="editarArchivo">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/materias/guardar}" 
-                          th:object="${materia}"
+                          th:action="@{/archivos/guardar}" 
+                          th:object="${archivo}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="idMateria" th:field="*{idMateria}"/>                       
-                        <section th:replace="~{materias/fragmentos :: botonesEditar}"/>
+                        <input type="hidden" name="idArchivo" th:field="*{idArchivo}"/>
+
+                        <section th:replace="~{archivos/fragmentos :: botonesEditar}"/>
                         <div id=details>
                             <div class="container">
                                 <div class="row">
@@ -144,19 +146,27 @@
                                                 <h4>Actualizar</h4>
                                             </div>
 
-                                            <div class="modal-body">
+                                            <div class="card-body">
+
+                                                
+
                                                 <div class="mb-3">
-                                                    <label for="cedulaMaterias">Codigo de la materia</label>
-                                                    <input type="text" class="form-control" name="codigoMateria" th:field="*{codigoMateria}" required="true"/>
+                                                    <label for="idEstudiante">Estudiante</label>
+                                                    <select name="estudiante.idEstudiante"  th:field="*{estudiante.idEstudiante}"class="form-select" aria-label="Default select example">
+                                                        <option th:each="b : ${estudiantes}" 
+                                                                th:value="${b.idEstudiante}">[[${b.codigoEstudiante}]]</option>
+                                                    </select>
                                                 </div>
+
+
                                                 <div class="mb-3">
-                                                    <label for="nombre">Nombre de la materia</label>
-                                                    <input type="text" class="form-control" name="nombreMateria"th:field="*{nombreMateria}" required="true"/>
+                                                    <label for="tipoDocumento">Tipo de documento</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="tipoDocumento" th:field="*{tipoDocumento}"
+                                                           required="true">
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="apellido">Descripcion</label>
-                                                    <input type="text" class="form-control" name="descripcion"th:field="*{descripcion}" required="true"/>
-                                                </div>
+
+
 
 
                                             </div>
@@ -174,12 +184,12 @@
             <div class="container py-4 mb-4 bg-light">
                 <div class="row">
                     <div class="col-md-4 d-grid">
-                        <a th:href="@{/materias/listado}" class="btn btn-primary">
+                        <a th:href="@{/archivos/listado}" class="btn btn-primary">
                             <i class="fas fa-arrow-left"></i> Regresar
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/materias/eliminar/}+${materias.idMateria}"
+                        <a th:href="@{/archivos/eliminar/}+${archivos.idArchivo}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> Eliminar
                         </a>

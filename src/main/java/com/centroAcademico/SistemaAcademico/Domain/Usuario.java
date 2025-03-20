@@ -35,7 +35,6 @@ public class Usuario implements Serializable {
     @Column(name = "activo")
     private boolean activo;
 
-    @OneToMany
-    @JoinColumn(name = "id_usuario", updatable = false)
-    private List<Rol> roles;
+     @OneToMany(mappedBy = "usuario")
+    private List<Rol> rol;
 }

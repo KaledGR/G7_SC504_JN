@@ -5,14 +5,13 @@
       xmlns:th="http://www.thymeleaf.org"> 
     <head th:replace="~{layout/plantilla :: head}">       
         <title>TechShop</title>
-        <meta charset="UTF-8"/>
-        
+        <meta charset="UTF-8"/>       
     </head>
     <body>
        <header th:replace="~{layout/plantilla :: header}"/>      
-        
-        <section th:replace="~{usuario/fragmentos :: editarUsuario}"/>
-        
+        <section th:replace="~{congelamiento/fragmentos :: botonesAgregar}"/>
+        <section th:replace="~{congelamiento/fragmentos :: agregarCongelamiento}"/>
+        <section th:replace="~{congelamiento/fragmentos :: listadoCongelamiento}"/>
         <footer th:replace="~{layout/plantilla :: footer}"/>
 
     </body>

@@ -5,44 +5,44 @@
 package com.centroAcademico.SistemaAcademico.Service.Impl;
 
 
-import com.centroAcademico.SistemaAcademico.Domain.Horarios;
+import com.centroAcademico.SistemaAcademico.Domain.Notas;
 
-import com.centroAcademico.SistemaAcademico.Service.HorariosService;
-import com.centroAcademico.SistemaAcademico.Dao.HorariosDao;
+import com.centroAcademico.SistemaAcademico.Service.NotasService;
+import com.centroAcademico.SistemaAcademico.Dao.NotasDao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class HorariosServiceImpl implements HorariosService {
+public class NotasServiceImpl implements NotasService {
 
      @Autowired
-    private HorariosDao horariosDao;
+    private NotasDao notasDao;
      
     @Override
     @Transactional(readOnly=true)
-    public List<Horarios> getHorarios() {
-        var lista = horariosDao.findAll();
+    public List<Notas> getNotas() {
+        var lista = notasDao.findAll();
         return lista;
     }
 
     @Override
     @Transactional(readOnly=true)
-    public Horarios getHorario(Horarios horario) {
-        return horariosDao.findById(horario.getIdHorario()).orElse(null);
+    public Notas getNota(Notas notas) {
+        return notasDao.findById(notas.getIdNota()).orElse(null);
     }
 
     @Override
     @Transactional
-    public void save(Horarios horarios) {
-        horariosDao.save(horarios);
+    public void save(Notas notas) {
+        notasDao.save(notas);
     }
 
     @Override
     @Transactional
-    public void delete(Horarios horarios) {
-        horariosDao.delete(horarios);
+    public void delete(Notas notas) {
+        notasDao.delete(notas);
     }
     
     

@@ -4,8 +4,9 @@
  */
 package com.centroAcademico.SistemaAcademico.Controller;
 
-import com.centroAcademico.SistemaAcademico.Domain.Horarios;
-import com.centroAcademico.SistemaAcademico.Service.HorariosService;
+import com.centroAcademico.SistemaAcademico.Domain.Notas;
+import com.centroAcademico.SistemaAcademico.Service.EstudianteService;
+import com.centroAcademico.SistemaAcademico.Service.NotasService;
 import com.centroAcademico.SistemaAcademico.Service.MateriasService;
 import com.centroAcademico.SistemaAcademico.Service.ProfesoresService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +18,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/horarios")
-public class HorariosController {
+@RequestMapping("/notas")
+public class NotasController {
 
-   @Autowired
-    private HorariosService horariosService;
+    @Autowired
+    private NotasService notasService;
 
     @Autowired
     private ProfesoresService profesoresService;
-    
+
     @Autowired
     private MateriasService materiasService;
 
+    @Autowired
+    private EstudianteService estudianteService;
+
     @GetMapping("/listado")
     public String listado(Model model) {
-        var lista = horariosService.getHorarios();
-        model.addAttribute("horarios", lista);
-        model.addAttribute("totalHorarios", lista.size());
+        var lista = notasService.getNotas();
+        model.addAttribute("notas", lista);
+        model.addAttribute("totalNotas", lista.size());
 
         var profesores = profesoresService.getProfesores();
         model.addAttribute("profesores", profesores);
@@ -41,33 +45,39 @@ public class HorariosController {
         var materias = materiasService.getMaterias();
         model.addAttribute("materias", materias);
         
-        return "/horarios/listado";
+         var estudiantes = estudianteService.getEstudiantes();
+        model.addAttribute("estudiantes", estudiantes);
+
+        return "/notas/listado";
     }
 
     @PostMapping("/guardar")
-    public String guardar(Horarios horarios) {
+    public String guardar(Notas notas) {
 
-        horariosService.save(horarios);
-        return "redirect:/horarios/listado";
+        notasService.save(notas);
+        return "redirect:/notas/listado";
     }
 
-    @GetMapping("/eliminar/{idHorario}")
-    public String eliminar(Horarios horarios) {
-        horariosService.delete(horarios);
-        return "redirect:/horarios/listado";
+    @GetMapping("/eliminar/{idNota}")
+    public String eliminar(Notas notas) {
+        notasService.delete(notas);
+        return "redirect:/notas/listado";
     }
 
-    @GetMapping("/modificar/{idHorario}")
-    public String modificar(Horarios horario, Model model) {
-        horario = horariosService.getHorario(horario);
-        model.addAttribute("horario", horario);
-        
-         var profesores = profesoresService.getProfesores();
+    @GetMapping("/modificar/{idNota}")
+    public String modificar(Notas nota, Model model) {
+        nota = notasService.getNota(nota);
+        model.addAttribute("nota", nota);
+
+        var profesores = profesoresService.getProfesores();
         model.addAttribute("profesores", profesores);
 
         var materias = materiasService.getMaterias();
         model.addAttribute("materias", materias);
         
-        return "/horarios/modifica";
+         var estudiantes = estudianteService.getEstudiantes();
+        model.addAttribute("estudiantes", estudiantes);
+
+        return "/notas/modifica";
     }
 }

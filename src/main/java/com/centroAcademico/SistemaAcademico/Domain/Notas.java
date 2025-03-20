@@ -18,15 +18,15 @@ public class Notas implements Serializable {
     private Long idNota;
 
     @ManyToOne
-    @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesor", nullable = false)
+    @JoinColumn(name = "id_profesor", nullable = true)
     private Profesores profesor;
-
+    
     @ManyToOne
-    @JoinColumn(name = "id_materia", referencedColumnName = "id_materia", nullable = false)
+    @JoinColumn(name = "id_materia", nullable = true)
     private Materias materia;
 
     @ManyToOne
-    @JoinColumn(name = "id_estudiante", referencedColumnName = "id_estudiante", nullable = false)
+    @JoinColumn(name = "id_estudiante", nullable = false)
     private Estudiante estudiante;
 
     @Column(name = "calificacion", precision = 5, scale = 2, nullable = false)

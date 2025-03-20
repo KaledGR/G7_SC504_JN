@@ -31,8 +31,11 @@ public class Profesores implements Serializable {
     private String codigoProfesor;
     
     
-     @OneToMany
-    @JoinColumn(name="id_profesor", updatable=false)
+    @OneToMany(mappedBy = "profesor")
     private List<Horarios> horarios;
+    
+    @OneToMany(mappedBy = "profesor")
+    private List<Notas> notas;
+
     
 }

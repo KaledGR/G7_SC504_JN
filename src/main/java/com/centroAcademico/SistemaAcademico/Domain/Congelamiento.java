@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "Congelamiento")
-public class Congelamientos implements Serializable {
+public class Congelamiento implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -16,9 +16,11 @@ public class Congelamientos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_congelamiento")
     private Long idCongelamiento;
+   
     @ManyToOne
-    @JoinColumn(name = "id_estudiante", referencedColumnName = "id_estudiante", nullable = false)
+    @JoinColumn(name = "id_estudiante", nullable = false)
     private Estudiante estudiante;
-    @Column(name = "fechaComplemento", nullable = false)
-    private LocalDate fechaComplemento;
+    
+    @Column(name = "fecha_complemento", nullable = false)
+    private String fechaComplemento;
 }
