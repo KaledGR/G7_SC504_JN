@@ -2,7 +2,6 @@ package com.centroAcademico.SistemaAcademico.Controller;
 
 import com.centroAcademico.SistemaAcademico.Domain.Aulas;
 import com.centroAcademico.SistemaAcademico.Service.AulasService;
-import com.centroAcademico.SistemaAcademico.Service.AulasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,9 +42,9 @@ public class AulasController {
     }
 
     @GetMapping("/modificar/{idAula}")
-    public String modificar(Aulas aula, Model model) {
-        aula = aulasService.getAulas(aula);
-        model.addAttribute("aula", aula);
+    public String modificar(Aulas aulas, Model model) {
+        aulas = aulasService.getAulas(aulas);
+        model.addAttribute("aulas", aulas);
         
         return "/aulas/modifica";
     }

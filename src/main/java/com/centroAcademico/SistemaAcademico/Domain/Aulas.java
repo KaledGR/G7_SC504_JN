@@ -31,4 +31,12 @@ public class Aulas implements Serializable{
     public void setIdAula(Long idAula) {
         this.idAula = idAula;
     }
+    
+    public String getNumeroAula() { // Getter para nombre
+        return numeroAula;
+    }
+
+    public void setNumeroAula(String numeroAula) { //Setter para nombre
+      this.numeroAula = numeroAula;
+    }
 }

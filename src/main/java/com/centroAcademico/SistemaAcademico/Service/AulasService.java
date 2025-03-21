@@ -2,6 +2,7 @@ package com.centroAcademico.SistemaAcademico.Service;
 
 import java.util.List;
 import com.centroAcademico.SistemaAcademico.Domain.Aulas;
+import org.springframework.stereotype.Service;
 
 public interface AulasService {
     

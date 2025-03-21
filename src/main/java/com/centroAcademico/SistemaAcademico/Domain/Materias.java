@@ -42,4 +42,12 @@ public class Materias implements Serializable {
     public void setIdMateria(Long idMateria) {
         this.idMateria = idMateria;
     }
+    
+    public String getNombreMateria() { // Getter para nombre
+        return nombreMateria;
+    }
+
+    public void setNombreMateria(String nombreMateria) { //Setter para nombre
+      this.nombreMateria = nombreMateria;
+    }
 }

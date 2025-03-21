@@ -46,4 +46,12 @@ public class Profesores implements Serializable {
         this.idProfesor = idProfesor;
     }
     
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+      this.nombre = nombre;
+    }
+    
 }
