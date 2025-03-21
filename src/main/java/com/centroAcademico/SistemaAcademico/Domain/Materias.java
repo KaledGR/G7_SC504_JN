@@ -12,14 +12,14 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="materias")
+@Table(name = "materias")
 public class Materias implements Serializable {
-    
+
     private static final long serialVersionUID = 1l;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_materia")
+    @Column(name = "id_materia")
     private Long idMateria;
     @Column(name = "nombre_materia")
     private String nombreMateria;
@@ -27,9 +27,27 @@ public class Materias implements Serializable {
     private String descripcion;
     @Column(name = "codigo_materia")
     private String codigoMateria;
-    
-    
-     @OneToMany
-    @JoinColumn(name="id_materia", updatable=false)
+
+    @OneToMany(mappedBy = "materia")
     private List<Horarios> horarios;
+    
+    @OneToMany(mappedBy = "materia")
+    private List<Notas> notas;
+    
+     //Pruebas por error de compilación - Anthony
+    public Long getIdMateria() {
+        return idMateria;
+    }
+
+    public void setIdMateria(Long idMateria) {
+        this.idMateria = idMateria;
+    }
+    
+    public String getNombreMateria() { // Getter para nombre
+        return nombreMateria;
+    }
+
+    public void setNombreMateria(String nombreMateria) { //Setter para nombre
+      this.nombreMateria = nombreMateria;
+    }
 }

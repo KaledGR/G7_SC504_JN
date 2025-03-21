@@ -11,7 +11,7 @@ public interface NotasService {
 
     // Recupera el ristro de la tabla materias en un objeto materias
     // si el idmaterias existe... sino devuelve null
-    public Notas getNotas(Notas nota);
+    public Notas getNota(Notas nota);
 
     // Actualiza un registro en la tabla materias si el idmaterias existe
     // Crea un registro en la tabla materias si idmaterias no tiene valor

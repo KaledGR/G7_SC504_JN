@@ -31,8 +31,27 @@ public class Profesores implements Serializable {
     private String codigoProfesor;
     
     
-     @OneToMany
-    @JoinColumn(name="id_profesor", updatable=false)
+    @OneToMany(mappedBy = "profesor")
     private List<Horarios> horarios;
+    
+    @OneToMany(mappedBy = "profesor")
+    private List<Notas> notas;
+
+     //Pruebas por error de compilación - Anthony
+    public Long getIdProfesor() {
+        return idProfesor;
+    }
+
+    public void setIdProfesor(Long idProfesor) {
+        this.idProfesor = idProfesor;
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+      this.nombre = nombre;
+    }
     
 }

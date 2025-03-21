@@ -43,23 +43,23 @@
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="cedulaUsuario">Nombre de usuario</label>
-                                    <input class="text" type="form-control" name="username" required="true"/>
+                                    <label for="username">Nombre de usuario</label>
+                                    <input type="text" class="form-control" name="username" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="nombre">Contraseña</label>
+                                    <label for="password">Contraseña</label>
                                     <input type="text" class="form-control" name="password" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="apellido">nombre</label>
+                                    <label for="nombre">nombre</label>
                                     <input type="text" class="form-control" name="nombre" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="dirrecion">apellidos</label>
+                                    <label for="apellidos">apellidos</label>
                                     <input type="text" class="form-control" name="apellidos" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="telefono">correo</label>
+                                    <label for="correo">correo</label>
                                     <input type="text" class="form-control" name="correo" required="true"/>
                                 </div>
 
@@ -161,7 +161,7 @@
 
                                             <div class="mb-3">
                                                 <label for="username">Nombre de usuario</label>
-                                                <input class="text" type="form-control" name="username" th:field="*{username}" id="activo" />
+                                                <input type="text" class="form-control" name="username" th:field="*{username}" id="activo" />
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password">Contraseña</label>
@@ -181,8 +181,9 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="activo">Activo</label>
-                                                <input type="text" class="form-control" name="activo" th:field="*{activo}" required="true"/>
+                                                <input type="number" class="form-control" name="activo" th:field="*{activo}" required="true"/>
                                             </div>
+                                            
 
                                         </div>
                                     </div>

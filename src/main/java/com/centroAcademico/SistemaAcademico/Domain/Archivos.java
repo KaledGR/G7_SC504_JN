@@ -17,9 +17,18 @@ public class Archivos implements Serializable {
     private Long idArchivo;
 
     @ManyToOne
-    @JoinColumn(name = "id_estudiante", referencedColumnName = "id_estudiante")
+    @JoinColumn(name = "id_estudiante", nullable = false)
     private Estudiante estudiante;
 
     @Column(name = "tipoDocumento")
     private String tipoDocumento;
+    
+    //Pruebas por error de compilación - Anthony
+    public Long getIdArchivo() {
+        return idArchivo;
+    }
+
+    public void setIdArchivo(Long idArchivo) {
+        this.idArchivo = idArchivo;
+    }
 }

@@ -27,11 +27,27 @@ public class Horarios implements Serializable {
     private String horarioInc;
     @Column(name = "horario_fin")
     private String horarioFin;
+//
+//    @Column(name = "id_profesor")
+//    private Long idProfesor;
+//
+//    @Column(name = "id_materia")
+//    private Long idMateria;
 
-    @Column(name = "id_profesor")
-    private int idProfesor;
+    @ManyToOne
+    @JoinColumn(name = "id_profesor", nullable = true)
+    private Profesores profesor;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_materia", nullable = true)
+    private Materias materia;
+    
+     //Pruebas por error de compilación - Anthony
+    public Long getIdHorario() {
+        return idHorario;
+    }
 
-    @Column(name = "id_materia")
-    private int idMateria;
-
+    public void setIdHorario(Long idHorario) {
+        this.idHorario = idHorario;
+    }
 }

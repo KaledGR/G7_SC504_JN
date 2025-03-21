@@ -130,10 +130,10 @@
                 <div class="col-md-8">
                     <form method="POST"
                           th:action="@{/materias/guardar}" 
-                          th:object="${materias}"
+                          th:object="${materia}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="idMaterias" th:field="*{idMateria}"/>                       
+                        <input type="hidden" name="idMateria" th:field="*{idMateria}"/>                       
                         <section th:replace="~{materias/fragmentos :: botonesEditar}"/>
                         <div id=details>
                             <div class="container">
@@ -147,7 +147,7 @@
                                             <div class="modal-body">
                                                 <div class="mb-3">
                                                     <label for="cedulaMaterias">Codigo de la materia</label>
-                                                    <input class="text" type="form-control" name="codigoMateria" th:field="*{codigoMateria}" required="true"/>
+                                                    <input type="text" class="form-control" name="codigoMateria" th:field="*{codigoMateria}" required="true"/>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="nombre">Nombre de la materia</label>

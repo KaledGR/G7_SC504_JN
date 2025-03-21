@@ -29,8 +29,8 @@ public class HorariosServiceImpl implements HorariosService {
 
     @Override
     @Transactional(readOnly=true)
-    public Horarios getHorarios(Horarios horarios) {
-        return horariosDao.findById(horarios.getIdHorario()).orElse(null);
+    public Horarios getHorario(Horarios horario) {
+        return horariosDao.findById(horario.getIdHorario()).orElse(null);
     }
 
     @Override

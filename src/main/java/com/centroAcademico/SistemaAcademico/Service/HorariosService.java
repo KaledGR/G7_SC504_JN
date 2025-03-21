@@ -17,7 +17,7 @@ public interface HorariosService {
     
     //Recupera el ristro de la tabla horarios en un objeto horarios
     //si el idhorarios existe... sino devuelve null
-    public Horarios getHorarios(Horarios horarios);
+    public Horarios getHorario(Horarios horario);
     
     //Actualiza un registro en la tabla horarios si el idhorarios existe
     //Crea un registro en la tabla horarios si  idhorarios no tiene valor

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/horarios")
 public class HorariosController {
 
-    @Autowired
+   @Autowired
     private HorariosService horariosService;
 
     @Autowired
@@ -51,16 +51,23 @@ public class HorariosController {
         return "redirect:/horarios/listado";
     }
 
-    @GetMapping("/eliminar/{idHorarios}")
+    @GetMapping("/eliminar/{idHorario}")
     public String eliminar(Horarios horarios) {
         horariosService.delete(horarios);
         return "redirect:/horarios/listado";
     }
 
-    @GetMapping("/modificar/{idHorarios}")
-    public String modificar(Horarios horarios, Model model) {
-        horarios = horariosService.getHorarios(horarios);
-        model.addAttribute("horarios", horarios);
+    @GetMapping("/modificar/{idHorario}")
+    public String modificar(Horarios horario, Model model) {
+        horario = horariosService.getHorario(horario);
+        model.addAttribute("horario", horario);
+        
+         var profesores = profesoresService.getProfesores();
+        model.addAttribute("profesores", profesores);
+
+        var materias = materiasService.getMaterias();
+        model.addAttribute("materias", materias);
+        
         return "/horarios/modifica";
     }
 }

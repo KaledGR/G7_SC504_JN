@@ -37,5 +37,23 @@ public class Estudiante implements Serializable {
     private String correoElectronico;
     @Column(name = "codigo_estudiante")
     private String codigoEstudiante;
+    
+     @OneToMany(mappedBy = "estudiante")
+    private List<Congelamiento> congelamientos;
+     
+     @OneToMany(mappedBy = "estudiante")
+    private List<Archivos> archivos;
+     
+     @OneToMany(mappedBy = "estudiante")
+    private List<Notas> notas;
+     
+     //Pruebas por error de compilación - Anthony
+    public Long getIdEstudiante() {
+        return idEstudiante;
+    }
+
+    public void setIdEstudiante(Long idEstudiante) {
+        this.idEstudiante = idEstudiante;
+    }
 
 }
