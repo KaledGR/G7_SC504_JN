@@ -42,4 +42,12 @@ public class Horarios implements Serializable {
     @JoinColumn(name = "id_materia", nullable = true)
     private Materias materia;
     
+     //Pruebas por error de compilación - Anthony
+    public Long getIdHorario() {
+        return idHorario;
+    }
+
+    public void setIdHorario(Long idHorario) {
+        this.idHorario = idHorario;
+    }
 }

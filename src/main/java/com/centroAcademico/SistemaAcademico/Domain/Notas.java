@@ -31,4 +31,13 @@ public class Notas implements Serializable {
 
     @Column(name = "calificacion", precision = 5, scale = 2, nullable = false)
     private BigDecimal calificacion;
+    
+     //Pruebas por error de compilación - Anthony
+    public Long getIdNota() {
+        return idNota;
+    }
+
+    public void setIdNota(Long idNota) {
+        this.idNota = idNota;
+    }
 }

@@ -37,4 +37,13 @@ public class Usuario implements Serializable {
 
      @OneToMany(mappedBy = "usuario")
     private List<Rol> rol;
+     
+    //Pruebas por error de compilación - Anthony
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 }

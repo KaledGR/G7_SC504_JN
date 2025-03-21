@@ -22,4 +22,13 @@ public class Archivos implements Serializable {
 
     @Column(name = "tipoDocumento")
     private String tipoDocumento;
+    
+    //Pruebas por error de compilación - Anthony
+    public Long getIdArchivo() {
+        return idArchivo;
+    }
+
+    public void setIdArchivo(Long idArchivo) {
+        this.idArchivo = idArchivo;
+    }
 }
