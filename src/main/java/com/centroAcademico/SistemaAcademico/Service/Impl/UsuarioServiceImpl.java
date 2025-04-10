@@ -27,13 +27,14 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional(readOnly = true)
     public List<Usuario> getUsuarios() {
-        return usuarioDao.findAll();
+        return usuarioDao.getUsuarios();
     }
 
     @Override
     @Transactional(readOnly = true)
     public Usuario getUsuario(Usuario usuario) {
-        return usuarioDao.findById(usuario.getIdUsuario()).orElse(null);
+        List<Usuario> usuarios = usuarioDao.getUsuario(usuario.getIdUsuario());
+        return usuarios.isEmpty() ? null : usuarios.get(0);
     }
 
     @Override
@@ -62,17 +63,39 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public void save(Usuario usuario) {
-        usuario=usuarioDao.save(usuario);
-         //Si se está creando el usuario, se crea el rol por defecto "USER"
+    public void insertarUsuario(Usuario usuario) {
+        usuarioDao.insertarUsuario(         
+                usuario.getUsername(),
+                usuario.getPassword(),
+                usuario.getNombre(),
+                usuario.getApellidos(),
+                usuario.getCorreo(),
+                usuario.getActivo());
+         
+           
+        
+    }
+    
+    @Override
+    @Transactional
+    public void actualizarUsuario(Usuario usuario) {
+        usuarioDao.actualizarUsuario(
+                usuario.getIdUsuario(),
+                usuario.getUsername(),
+                usuario.getPassword(),
+                usuario.getNombre(),
+                usuario.getApellidos(),
+                usuario.getCorreo(),
+                usuario.getActivo());
+         
            
         
     }
 
     @Override
     @Transactional
-    public void delete(Usuario usuario) {
-        usuarioDao.delete(usuario);
+    public void eliminarUsuario(Usuario usuario) {
+        usuarioDao.eliminarUsuario(usuario.getIdUsuario());
     }
 }
     

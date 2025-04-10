@@ -47,14 +47,14 @@
                                     <label for="idProfesor">Profesores</label>
                                     <select name="profesor.idProfesor" class="form-select" aria-label="Default select example">
                                         <option th:each="c : ${profesores}" 
-                                                th:value="${c.idProfesor}">[[${c.idProfesor}]]</option>
+                                                th:value="${c.idProfesor}">[[${c.codigoProfesor}]]</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="idMateria">Materias</label>
                                     <select name="materia.idMateria" class="form-select" aria-label="Default select example">
                                         <option th:each="b : ${materias}" 
-                                                th:value="${b.idMateria}">[[${b.idMateria}]]</option>
+                                                th:value="${b.idMateria}">[[${b.codigoMateria}]]</option>
                                     </select>
                                 </div>
 
@@ -63,15 +63,17 @@
                                     <input type="text" class="form-control" name="diaSemana" required="true"/>
                                 </div>
 
+
                                 <div class="mb-3">
                                     <label for="horarioInc">Horario de inicio</label>
-                                    <input type="date" class="form-control" name="horarioInc" required="true"/>
+                                    <input type="datetime-local" class="form-control" name="horarioInc" required="true"/>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="horarioFin">Horario de finalizacion</label>
-                                    <input type="date" class="form-control" name="horarioFin" required="true"/>
+                                    <label for="horarioFin">Horario de finalización</label>
+                                    <input type="datetime-local" class="form-control" name="horarioFin" required="true"/>
                                 </div>
+
 
 
                             </div>
@@ -110,8 +112,8 @@
                                     <tbody>
                                         <tr th:each="horarios : ${horarios}">
                                             <td style="text-align: center">[[${horarios.idHorario}]]</td>
-                                            <td style="text-align: center">[[${horarios.profesor.idProfesor}]]</td>
-                                            <td style="text-align: center" >[[${horarios.materia.idMateria}]]</td>
+                                            <td style="text-align: center">[[${horarios.profesor.codigoProfesor}]]</td>
+                                            <td style="text-align: center" >[[${horarios.materia.codigoMateria}]]</td>
                                             <td style="text-align: center">[[${horarios.diaSemana}]]</td>
                                             <td style="text-align: center">[[${horarios.horarioInc}]]</td>
                                             <td style="text-align: center">[[${horarios.horarioFin}]]</td>
@@ -149,7 +151,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/horarios/guardar}" 
+                          th:action="@{/horarios/actualizar}" 
                           th:object="${horario}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
@@ -188,16 +190,16 @@
                                                            name="diaSemana" th:field="*{diaSemana}"
                                                            required="true">
                                                 </div>
-                                                
-                                                  <div class="mb-3">
+
+                                                <div class="mb-3">
                                                     <label for="horarioInc">Horario de inicio</label>
-                                                    <input type="date" class="form-control" 
+                                                    <input type="datetime-local" class="form-control" 
                                                            name="horarioInc" th:field="*{horarioInc}"
                                                            required="true">
                                                 </div>
-                                                 <div class="mb-3">
+                                                <div class="mb-3">
                                                     <label for="horarioFin">Horario de finalizacion</label>
-                                                    <input type="date" class="form-control" 
+                                                    <input type="datetime-local" class="form-control" 
                                                            name="horarioFin" th:field="*{horarioFin}"
                                                            required="true">
                                                 </div>

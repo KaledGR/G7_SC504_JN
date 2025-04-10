@@ -10,8 +10,66 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Data
+
 @Entity
+@NamedStoredProcedureQuery(
+    name = "sp_estudiantes",
+    procedureName = "sp_estudiantes",
+    resultClasses = Estudiante.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
+)
+
+@NamedStoredProcedureQuery(
+    name = "sp_obtener_estudiante",
+    procedureName = "sp_obtener_estudiante",
+    resultClasses = Estudiante.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
+)
+
+@NamedStoredProcedureQuery(
+    name = "insertar_estudiante",
+    procedureName = "insertar_estudiante",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_cedula", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_apellido", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_direccion", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_telefono", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_correo", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_codigo_estudiante", type = String.class)
+    }
+)
+
+@NamedStoredProcedureQuery(
+    name = "actualizar_estudiante",
+    procedureName = "actualizar_estudiante",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_cedula_estudiante", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_apellido", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_direccion", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_telefono", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_correo_electronico", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_codigo_estudiante", type = String.class)
+    }
+)
+
+@NamedStoredProcedureQuery(
+    name = "eliminar_estudiante",
+    procedureName = "eliminar_estudiante",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Integer.class)
+    }
+)
+
+@Data
+
 @Table(name = "estudiantes")
 public class Estudiante implements Serializable {
 
@@ -47,13 +105,9 @@ public class Estudiante implements Serializable {
      @OneToMany(mappedBy = "estudiante")
     private List<Notas> notas;
      
-     //Pruebas por error de compilación - Anthony
-    public Long getIdEstudiante() {
-        return idEstudiante;
-    }
+    @OneToMany(mappedBy = "estudiante")
+    private List<Inscripciones> inscripciones;
 
-    public void setIdEstudiante(Long idEstudiante) {
-        this.idEstudiante = idEstudiante;
-    }
-
+    //public void setIdEstudiante(Long idEstudiante) {
+       // this.idEstudiante = idEstudiante;
 }

@@ -23,26 +23,50 @@ public class EstudianteServiceImpl implements EstudianteService {
     @Override
     @Transactional(readOnly=true)
     public List<Estudiante> getEstudiantes() {
-        var lista = estudianteDao.findAll();
+        var lista = estudianteDao.getEstudiantes();
         return lista;
     }
 
-    @Override
+     @Override
     @Transactional(readOnly=true)
     public Estudiante getEstudiante(Estudiante estudiante) {
-        return estudianteDao.findById(estudiante.getIdEstudiante()).orElse(null);
+        List<Estudiante> estudiantes = estudianteDao.obtenerEstudiante(estudiante.getIdEstudiante());
+        return estudiantes.isEmpty() ? null : estudiantes.get(0);
     }
 
     @Override
     @Transactional
     public void save(Estudiante estudiante) {
-        estudianteDao.save(estudiante);
+        estudianteDao.insertarEstudiante(
+            estudiante.getCedulaEstudiante(),
+            estudiante.getNombre(),
+            estudiante.getApellido(),
+            estudiante.getDireccion(),
+            estudiante.getTelefono(),
+            estudiante.getCorreoElectronico(),
+            estudiante.getCodigoEstudiante()
+        );
     }
+    
+   @Override
+@Transactional
+public void actualizarEstudiante(Estudiante estudiante) {
+    estudianteDao.actualizarEstudiante(
+        estudiante.getIdEstudiante(), 
+        estudiante.getCedulaEstudiante(),
+        estudiante.getNombre(),
+        estudiante.getApellido(),
+        estudiante.getDireccion(),
+        estudiante.getTelefono(),
+        estudiante.getCorreoElectronico(),
+        estudiante.getCodigoEstudiante()
+    );
+}
 
     @Override
     @Transactional
     public void delete(Estudiante estudiante) {
-        estudianteDao.delete(estudiante);
+        estudianteDao.eliminarEstudiante(estudiante.getIdEstudiante());
     }
     
     

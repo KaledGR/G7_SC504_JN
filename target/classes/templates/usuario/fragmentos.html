@@ -65,7 +65,7 @@
 
                                 <div class="mb-3">
                                     <label for="activo">Activo</label>
-                                    <input class="form-control" type="number"  name="activo" id="activo"/>
+                                    <input class="form-control" type="text"  name="activo" required="true" />
                                 </div>
 
 
@@ -144,7 +144,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/usuario/guardar}" 
+                          th:action="@{/usuario/actualizar}" 
                           th:object="${usuario}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
@@ -181,7 +181,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="activo">Activo</label>
-                                                <input type="number" class="form-control" name="activo" th:field="*{activo}" required="true"/>
+                                                <input type="text" class="form-control" name="activo" th:field="*{activo}" required="true"/>
                                             </div>
                                             
 

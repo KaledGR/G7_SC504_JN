@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "Congelamiento")
+@Table(name = "congelamiento")
 public class Congelamiento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,11 +25,5 @@ public class Congelamiento implements Serializable {
     private String fechaComplemento;
     
     //Pruebas por error de compilación - Anthony
-    public Long getIdCongelamiento() {
-        return idCongelamiento;
-    }
-
-    public void setIdCongelamiento(Long idCongelamiento) {
-        this.idCongelamiento = idCongelamiento;
-    }
+    
 }

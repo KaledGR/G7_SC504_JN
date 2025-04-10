@@ -21,10 +21,12 @@ public interface RolService {
     
     //Actualiza un registro en la tabla rol si el idrol existe
     //Crea un registro en la tabla rol si  idrol no tiene valor
-    public void save (Rol rol);
+    public void insertarRol (Rol rol);
+    
+    public void actualizarRol (Rol rol);
     
     //Elimina el registro de la tabla rol si idrol eciste en la tabla
-    public void delete(Rol rol);
+    public void eliminarRol(Rol rol);
     
 }
     
