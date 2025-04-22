@@ -40,13 +40,20 @@ public class UsuarioController {
     @PostMapping("/guardar")
     public String usuarioGuardar(Usuario usuario) {
        
-        usuarioService.save(usuario);
+        usuarioService.insertarUsuario(usuario);
+        return "redirect:/usuario/listado";
+    }
+    
+    @PostMapping("/actualizar")
+    public String actualizarUsuario(Usuario usuario) {
+       
+        usuarioService.actualizarUsuario(usuario);
         return "redirect:/usuario/listado";
     }
 
     @GetMapping("/eliminar/{idUsuario}")
     public String usuarioEliminar(Usuario usuario) {
-        usuarioService.delete(usuario);
+        usuarioService.eliminarUsuario(usuario);
         return "redirect:/usuario/listado";
     }
 

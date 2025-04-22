@@ -24,7 +24,7 @@ public class ClasesServiceImpl implements ClasesService{
     @Override
     @Transactional(readOnly=true)
     public Clases getClases(Clases clases) {
-        return clasesDao.findById(clases.getIdClases()).orElse(null);
+        return clasesDao.findById(clases.getIdClase()).orElse(null);
     }
 
     @Override

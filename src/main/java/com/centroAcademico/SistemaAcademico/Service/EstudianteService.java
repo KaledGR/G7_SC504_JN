@@ -23,6 +23,8 @@ public interface EstudianteService {
     //Crea un registro en la tabla estudiante si  idestudiante no tiene valor
     public void save (Estudiante estudiante);
     
+    public void actualizarEstudiante(Estudiante estudiante);
+    
     //Elimina el registro de la tabla estudiante si idestudiante eciste en la tabla
     public void delete(Estudiante estudiante);
     

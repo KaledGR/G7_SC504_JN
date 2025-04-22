@@ -36,6 +36,13 @@ public class EstudianteController {
             return "redirect:/estudiante/listado";
     }
     
+     @PostMapping("/actualizar")
+    public String actualizar(Estudiante estudiante){
+    
+            estudianteService.actualizarEstudiante(estudiante);
+            return "redirect:/estudiante/listado";
+    }
+    
     @GetMapping("/eliminar/{idEstudiante}")
     public String eliminar(Estudiante estudiante){
         estudianteService.delete(estudiante);

@@ -29,8 +29,10 @@ public interface UsuarioService {
 
     // Se inserta un nuevo usuario si el id del usuario esta vacío
     // Se actualiza un usuario si el id del usuario NO esta vacío
-    public void save(Usuario usuario);
+    public void insertarUsuario(Usuario usuario);
+    
+    public void actualizarUsuario(Usuario usuario);
 
     // Se elimina el usuario que tiene el id pasado por parámetro
-    public void delete(Usuario usuario);
+    public void eliminarUsuario(Usuario usuario);
 }

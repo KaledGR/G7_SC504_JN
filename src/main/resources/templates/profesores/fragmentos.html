@@ -43,8 +43,8 @@
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="cedulaProfesores">Cedula del profesor</label>
-                                    <input class="text" type="form-control" name="cedulaProfesores" required="true"/>
+                                    <label for="cedulaProfesor">Cedula del profesor</label>
+                                    <input class="form-control" type="text" name="cedulaProfesor" required="true"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="nombre">Nombre</label>
@@ -135,7 +135,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/profesores/guardar}" 
+                          th:action="@{/profesores/actualizar}" 
                           th:object="${profesor}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
@@ -151,7 +151,7 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="cedulaProfesores">Cedula del profesor</label>
+                                                <label for="cedulaProfesor">Cedula del profesor</label>
                                                 <input type="text" class="form-control" name="cedulaProfesor" th:field="*{cedulaProfesor}" required="true" />
                                             </div>
                                             <div class="mb-3">

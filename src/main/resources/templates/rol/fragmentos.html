@@ -44,8 +44,8 @@
                             <div class="modal-body">
 
                                 <div class="mb-3">
-                                    <label for="nombre">Nombre de la rol</label>
-                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                    <label for="nombre">Nombre del rol</label>
+                                    <input type="text" class="form-control" name="nombreRol" required="true"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="idUsuario">Usuario</label>
@@ -92,7 +92,7 @@
                                         <tr th:each="rols, contador : ${rols}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${rols.idRol}]]</td>
-                                            <td>[[${rols.nombre}]]</td>
+                                            <td>[[${rols.nombreRol}]]</td>
                                             <td>[[${rols.usuario.nombre}]]</td>
 
 
@@ -129,7 +129,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/rol/guardar}" 
+                          th:action="@{/rol/actualizar}" 
                           th:object="${rol}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
@@ -148,7 +148,7 @@
 
                                                 <div class="mb-3">
                                                     <label for="nombre">Nombre de la rol</label>
-                                                    <input type="text" class="form-control" name="nombreRol"th:field="*{nombre}" required="true"/>
+                                                    <input type="text" class="form-control" name="nombreRol"th:field="*{nombreRol}" required="true"/>
                                                 </div>
 
                                                 <div class="mb-3">

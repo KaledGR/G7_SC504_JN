@@ -23,26 +23,42 @@ public class MateriasServiceImpl implements MateriasService {
     @Override
     @Transactional(readOnly=true)
     public List<Materias> getMaterias() {
-        var lista = materiasDao.findAll();
+        var lista = materiasDao.getMaterias();
         return lista;
     }
 
     @Override
     @Transactional(readOnly=true)
     public Materias getMateria(Materias materia) {
-        return materiasDao.findById(materia.getIdMateria()).orElse(null);
+          List<Materias> materias = materiasDao.getMateria(materia.getIdMateria());
+        return materias.isEmpty() ? null : materias.get(0);
     }
 
     @Override
     @Transactional
-    public void save(Materias materias) {
-        materiasDao.save(materias);
+    public void insertarMateria(Materias materia) {
+        materiasDao.insertarMateria(
+                materia.getCodigoMateria(),
+                materia.getNombreMateria(),
+                materia.getDescripcion()
+        );
     }
 
+    
     @Override
     @Transactional
-    public void delete(Materias materias) {
-        materiasDao.delete(materias);
+    public void actualizarMateria(Materias materia){
+        materiasDao.actualizarMateria(materia.getIdMateria(),
+                materia.getCodigoMateria(),
+                materia.getNombreMateria(),
+                materia.getDescripcion()
+        );
+    }
+            
+    @Override
+    @Transactional
+    public void eliminar(Materias materias) {
+        materiasDao.eliminarMateria(materias.getIdMateria());
     }
 
   

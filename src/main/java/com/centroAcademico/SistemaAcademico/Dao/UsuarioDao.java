@@ -4,8 +4,12 @@
  */
 package com.centroAcademico.SistemaAcademico.Dao;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.centroAcademico.SistemaAcademico.Domain.Usuario;
+import java.util.List;
+import org.springframework.data.jpa.repository.query.Procedure;
+import org.springframework.data.repository.query.Param;
 
 public interface UsuarioDao  extends JpaRepository<Usuario,Long> {
     
@@ -16,4 +20,34 @@ public interface UsuarioDao  extends JpaRepository<Usuario,Long> {
     public Usuario findByUsernameOrCorreo(String username, String correo);
 
     public boolean existsByUsernameOrCorreo(String username, String correo);
+    
+     @Procedure(name = "insertar_usuario")
+    void insertarUsuario(
+        @Param("p_username") String username,
+        @Param("p_password") String password,
+        @Param("p_nombre") String nombre,
+        @Param("p_apellidos") String apellidos,
+        @Param("p_correo") String correo,
+        @Param("p_activo") String activo
+    );
+
+    @Procedure(name = "obtener_usuarios")
+    List<Usuario> getUsuarios();
+
+    @Procedure(name = "obtener_usuario_por_id")
+    List<Usuario> getUsuario(@Param("p_id_usuario") Long idUsuario);
+
+    @Procedure(name = "actualizar_usuario")
+    void actualizarUsuario(
+        @Param("p_id_usuario") Long idUsuario,
+        @Param("p_username") String username,
+        @Param("p_password") String password,
+        @Param("p_nombre") String nombre,
+        @Param("p_apellidos") String apellidos,
+        @Param("p_correo") String correo,
+        @Param("p_activo") String activo
+    );
+
+    @Procedure(name = "eliminar_usuario")
+    void eliminarUsuario(@Param("p_id_usuario") Long idUsuario);
 }

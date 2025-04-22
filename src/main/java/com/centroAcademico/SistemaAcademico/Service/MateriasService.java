@@ -21,10 +21,12 @@ public interface MateriasService {
     
     //Actualiza un registro en la tabla materias si el idmaterias existe
     //Crea un registro en la tabla materias si  idmaterias no tiene valor
-    public void save (Materias materias);
+    public void insertarMateria (Materias materia);
+    
+    public void actualizarMateria (Materias materia);
     
     //Elimina el registro de la tabla materias si idmaterias eciste en la tabla
-    public void delete(Materias materias);
+    public void eliminar(Materias materias);
 
 
     

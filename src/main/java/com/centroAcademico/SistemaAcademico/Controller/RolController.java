@@ -40,13 +40,20 @@ public class RolController {
     @PostMapping("/guardar")
     public String guardar(Rol rol) {
 
-        rolService.save(rol);
+        rolService.insertarRol(rol);
+        return "redirect:/rol/listado";
+    }
+    
+    @PostMapping("/actualizar")
+    public String actualizar(Rol rol) {
+
+        rolService.actualizarRol(rol);
         return "redirect:/rol/listado";
     }
 
     @GetMapping("/eliminar/{idRol}")
     public String eliminar(Rol rol) {
-        rolService.delete(rol);
+        rolService.eliminarRol(rol);
         return "redirect:/rol/listado";
     }
 

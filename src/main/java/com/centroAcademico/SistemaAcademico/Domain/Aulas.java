@@ -24,19 +24,5 @@ public class Aulas implements Serializable{
     private Integer capacidad;
     
     //Pruebas por error de compilación - Anthony
-    public Long getIdAula() {
-        return idAula;
-    }
-
-    public void setIdAula(Long idAula) {
-        this.idAula = idAula;
-    }
-    
-    public String getNumeroAula() { // Getter para nombre
-        return numeroAula;
-    }
-
-    public void setNumeroAula(String numeroAula) { //Setter para nombre
-      this.numeroAula = numeroAula;
-    }
+  
 }

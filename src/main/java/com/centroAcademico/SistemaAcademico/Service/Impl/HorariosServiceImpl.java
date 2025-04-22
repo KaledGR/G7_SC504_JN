@@ -23,26 +23,45 @@ public class HorariosServiceImpl implements HorariosService {
     @Override
     @Transactional(readOnly=true)
     public List<Horarios> getHorarios() {
-        var lista = horariosDao.findAll();
+        var lista = horariosDao.getHorarios();
         return lista;
     }
 
     @Override
     @Transactional(readOnly=true)
     public Horarios getHorario(Horarios horario) {
-        return horariosDao.findById(horario.getIdHorario()).orElse(null);
+        List<Horarios> horarios = horariosDao.getHorario(horario.getIdHorario());
+        return horarios.isEmpty() ? null : horarios.get(0);
     }
 
     @Override
     @Transactional
-    public void save(Horarios horarios) {
-        horariosDao.save(horarios);
+    public void insertarHorario(Horarios horarios) {
+        horariosDao.insertarHorario(
+                 horarios.getProfesor().getIdProfesor()
+                ,horarios.getMateria().getIdMateria()
+                ,horarios.getDiaSemana()
+                ,horarios.getHorarioInc()
+                ,horarios.getHorarioFin());
+    }
+    
+    @Override
+    @Transactional
+    public void actualizarHorario(Horarios horarios) {
+        horariosDao.actualizarHorario(
+                 horarios.getIdHorario()
+                ,horarios.getProfesor().getIdProfesor()
+                ,horarios.getMateria().getIdMateria()
+                ,horarios.getDiaSemana()
+                ,horarios.getHorarioInc()
+                ,horarios.getHorarioFin()
+        );
     }
 
     @Override
     @Transactional
-    public void delete(Horarios horarios) {
-        horariosDao.delete(horarios);
+    public void eliminarHorario(Horarios horarios) {
+        horariosDao.eliminarHorario(horarios.getIdHorario());
     }
     
     

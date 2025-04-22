@@ -9,6 +9,7 @@ import com.centroAcademico.SistemaAcademico.Domain.Profesores;
 
 import com.centroAcademico.SistemaAcademico.Service.ProfesoresService;
 import com.centroAcademico.SistemaAcademico.Dao.ProfesoresDao;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,26 +24,44 @@ public class ProfesoresServiceImpl implements ProfesoresService {
     @Override
     @Transactional(readOnly=true)
     public List<Profesores> getProfesores() {
-        var lista = profesoresDao.findAll();
+        var lista = profesoresDao.getProfesores();
         return lista;
     }
 
     @Override
     @Transactional(readOnly=true)
     public Profesores getProfesor(Profesores profesor) {
-        return profesoresDao.findById(profesor.getIdProfesor()).orElse(null);
+       List<Profesores> profesores = profesoresDao.getProfesor(profesor.getIdProfesor());
+        return profesores.isEmpty() ? null : profesores.get(0);
     }
 
     @Override
     @Transactional
-    public void save(Profesores profesores) {
-        profesoresDao.save(profesores);
+    public void insertarProfesor(Profesores profesor) {
+        profesoresDao.insertarProfesor(
+                profesor.getCedulaProfesor(),
+                profesor.getNombre(),
+                profesor.getApellido(),
+                profesor.getCodigoProfesor()
+                );
+    }
+    
+    @Override
+    @Transactional
+    public void actualizarProfesor(Profesores profesor) {
+        profesoresDao.actualizarProfesor(
+                profesor.getIdProfesor(),
+                profesor.getCedulaProfesor(),
+                profesor.getNombre(),
+                profesor.getApellido(),
+                profesor.getCodigoProfesor()
+                );
     }
 
     @Override
     @Transactional
-    public void delete(Profesores profesores) {
-        profesoresDao.delete(profesores);
+    public void eliminar(Profesores profesores) {
+        profesoresDao.eliminar(profesores.getIdProfesor());
     }
     
     

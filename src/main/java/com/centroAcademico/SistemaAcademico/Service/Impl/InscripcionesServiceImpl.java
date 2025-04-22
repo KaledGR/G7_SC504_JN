@@ -23,7 +23,7 @@ public class InscripcionesServiceImpl implements InscripcionesService{
     @Override
     @Transactional(readOnly=true)
     public Inscripciones getInscripciones(Inscripciones inscripciones) {
-        return inscripcionesDao.findById(inscripciones.getIdInscripciones()).orElse(null);
+        return inscripcionesDao.findById(inscripciones.getIdInscripcion()).orElse(null);
     }
 
     @Override
