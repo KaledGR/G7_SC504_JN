@@ -36,11 +36,11 @@ public class MateriasServiceImpl implements MateriasService {
 
     @Override
     @Transactional
-    public void insertarMateria(Materias materias) {
+    public void insertarMateria(Materias materia) {
         materiasDao.insertarMateria(
-                materias.getNombreMateria(),
-                materias.getDescripcion(),
-                materias.getCodigoMateria()
+                materia.getCodigoMateria(),
+                materia.getNombreMateria(),
+                materia.getDescripcion()
         );
     }
 
@@ -49,9 +49,10 @@ public class MateriasServiceImpl implements MateriasService {
     @Transactional
     public void actualizarMateria(Materias materia){
         materiasDao.actualizarMateria(materia.getIdMateria(),
+                materia.getCodigoMateria(),
                 materia.getNombreMateria(),
-                materia.getDescripcion(),
-                materia.getCodigoMateria());
+                materia.getDescripcion()
+        );
     }
             
     @Override

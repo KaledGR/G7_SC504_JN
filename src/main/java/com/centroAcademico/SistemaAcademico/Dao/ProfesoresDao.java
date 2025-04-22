@@ -12,10 +12,10 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProfesoresDao extends JpaRepository<Profesores, Long> {
 
-    @Procedure(name = "sp_profesores")
+    @Procedure(name = "obtener_profesores")
     List<Profesores> getProfesores();
 
-    @Procedure(name = "sp_obtener_profesor")
+    @Procedure(name = "obtener_profesor_por_id")
     List<Profesores> getProfesor(@Param("p_id_profesor") Long idProfesor);
 
     @Procedure(name = "insertar_profesor")
@@ -26,7 +26,7 @@ public interface ProfesoresDao extends JpaRepository<Profesores, Long> {
             @Param("p_codigo_profesor") String codigoProfesor
     );
 
-    @Procedure(name = "sp_actualizar_profesor")
+    @Procedure(name = "actualizar_profesor")
     void actualizarProfesor(
             @Param("p_id_profesor") Long idProfesor,
             @Param("p_cedula_profesor") String cedulaProfesor,
@@ -35,7 +35,7 @@ public interface ProfesoresDao extends JpaRepository<Profesores, Long> {
             @Param("p_codigo_profesor") String codigoProfesor
     );
 
-    @Procedure(name = "sp_eliminar_profesor")
+    @Procedure(name = "eliminar_profesor")
     void eliminar(@Param("p_id_profesor") Long idProfesor);
 
 }

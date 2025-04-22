@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @NamedStoredProcedureQuery(
     name = "obtener_materias",
-    procedureName = "obtener_materias",
+    procedureName = "pkg_materias.obtener_materias",
     resultClasses = Materias.class,
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
@@ -22,38 +22,39 @@ import java.util.List;
 
 @NamedStoredProcedureQuery(
     name = "obtener_materia_por_id",
-    procedureName = "obtener_materia_por_id",
+    procedureName = "pkg_materias.obtener_materia_por_id",
     resultClasses = Materias.class,
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_materia", type = Integer.class),
-        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_cursor", type = void.class)
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
     }
 )
 
 @NamedStoredProcedureQuery(
     name = "insertar_materia",
-    procedureName = "insertar_materia",
+    procedureName = "pkg_materias.insertar_materia",
     parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_codigo_materia", type = String.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre_materia", type = String.class),
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_descripcion", type = String.class),
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_codigo_materia", type = String.class)
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_descripcion", type = String.class)
+        
     }
 )
 
 @NamedStoredProcedureQuery(
     name = "actualizar_materia",
-    procedureName = "actualizar_materia",
+    procedureName = "pkg_materias.actualizar_materia",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_materia", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_codigo_materia", type = String.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre_materia", type = String.class),
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_descripcion", type = String.class),
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_codigo_materia", type = String.class)
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_descripcion", type = String.class)
     }
 )
 
 @NamedStoredProcedureQuery(
     name = "eliminar_materia",
-    procedureName = "eliminar_materia",
+    procedureName = "pkg_materias.eliminar_materia",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_materia", type = Integer.class)
     }

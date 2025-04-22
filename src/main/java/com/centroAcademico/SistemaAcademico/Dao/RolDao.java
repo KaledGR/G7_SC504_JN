@@ -15,7 +15,7 @@ public interface RolDao  extends JpaRepository<Rol,Long> {
     
      @Procedure(name = "insertar_rol")
     void insertarRol(
-        @Param("p_nombre") String nombre,
+        @Param("p_nombre") String nombreRol,
         @Param("p_id_usuario") Long idUsuario
     );
     
@@ -28,7 +28,7 @@ public interface RolDao  extends JpaRepository<Rol,Long> {
     @Procedure(name = "actualizar_rol")
     void actualizarRol(
         @Param("p_id_rol") Long idRol,
-        @Param("p_nombre") String nombre,
+        @Param("p_nombre") String nombreRol,
         @Param("p_id_usuario") Long idUsuario
     );
     

@@ -38,7 +38,7 @@ public class RolServiceImpl implements RolService {
     @Transactional
     public void insertarRol(Rol rol) {
         rolDao.insertarRol(
-                rol.getNombre(),
+                rol.getNombreRol(),
                 rol.getUsuario().getIdUsuario());
     }
     
@@ -47,7 +47,7 @@ public class RolServiceImpl implements RolService {
     public void actualizarRol(Rol rol) {
         rolDao.actualizarRol(
                 rol.getIdRol(),
-                rol.getNombre(),
+                rol.getNombreRol(),
                 rol.getUsuario().getIdUsuario());
     }
 

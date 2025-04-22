@@ -15,24 +15,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
         name = "obtener_horarios",
-        procedureName = "obtener_horarios",
+        procedureName = "pkg_horarios.obtener_horarios",
         resultClasses = Horarios.class,
         parameters = {
-            @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_cursor", type = void.class)
+            @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
         }
     ),
     @NamedStoredProcedureQuery(
         name = "obtener_horario_por_id",
-        procedureName = "obtener_horario_por_id",
+        procedureName = "pkg_horarios.obtener_horario_por_id",
         resultClasses = Horarios.class,
         parameters = {
             @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_horario", type = Integer.class),
-            @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_cursor", type = void.class)
+            @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
         }
     ),
     @NamedStoredProcedureQuery(
         name = "insertar_horario",
-        procedureName = "insertar_horario",
+        procedureName = "pkg_horarios.insertar_horario",
         parameters = {
             @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_profesor", type = Integer.class),
             @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_materia", type = Integer.class),
@@ -43,7 +43,7 @@ import org.springframework.format.annotation.DateTimeFormat;
     ),
     @NamedStoredProcedureQuery(
         name = "actualizar_horario",
-        procedureName = "actualizar_horario",
+        procedureName = "pkg_horarios.actualizar_horario",
         parameters = {
             @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_horario", type = Integer.class),
             @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_profesor", type = Integer.class),
@@ -55,7 +55,7 @@ import org.springframework.format.annotation.DateTimeFormat;
     ),
     @NamedStoredProcedureQuery(
         name = "eliminar_horario",
-        procedureName = "eliminar_horario",
+        procedureName = "pkg_horarios.eliminar_horario",
         parameters = {
             @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_horario", type = Integer.class)
         }
@@ -74,15 +74,15 @@ public class Horarios implements Serializable {
     private Long idHorario;
     
     
-    @Column(name = "dia_semana")
+    @Column(name = "dia_Semana")
     private String diaSemana;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Column(name = "horario_inc")
+    @Column(name = "horario_Inc")
     private Date horarioInc;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Column(name = "horario_fin")
+    @Column(name = "horario_Fin")
     private Date horarioFin;
 //
 //    @Column(name = "id_profesor")

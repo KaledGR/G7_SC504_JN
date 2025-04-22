@@ -14,10 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface EstudianteDao extends JpaRepository<Estudiante, Long> {
 
-    @Procedure(name = "sp_estudiantes")
+    @Procedure(name = "obtener_estudiantes")
     List<Estudiante> getEstudiantes();
 
-   @Procedure(name = "sp_obtener_estudiante")
+   @Procedure(name = "obtener_estudiante_por_id")
     List<Estudiante> obtenerEstudiante(@Param("p_id_estudiante") Long idEstudiante);
 
     @Procedure(name = "insertar_estudiante")

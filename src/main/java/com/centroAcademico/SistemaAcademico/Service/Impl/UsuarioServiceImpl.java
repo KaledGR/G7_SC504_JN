@@ -13,16 +13,22 @@ import com.centroAcademico.SistemaAcademico.Dao.UsuarioDao;
 import com.centroAcademico.SistemaAcademico.Domain.Rol;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
-     @Autowired
+    @Autowired
     private UsuarioDao usuarioDao;
     @Autowired
     private RolDao rolDao;
+    
+   
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
 
     @Override
     @Transactional(readOnly = true)
@@ -64,6 +70,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional
     public void insertarUsuario(Usuario usuario) {
+        String passwordHashed = passwordEncoder.encode(usuario.getPassword());
+        usuario.setPassword(passwordHashed);
         usuarioDao.insertarUsuario(         
                 usuario.getUsername(),
                 usuario.getPassword(),
@@ -79,6 +87,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional
     public void actualizarUsuario(Usuario usuario) {
+         String passwordHashed = passwordEncoder.encode(usuario.getPassword());
+         usuario.setPassword(passwordHashed);
         usuarioDao.actualizarUsuario(
                 usuario.getIdUsuario(),
                 usuario.getUsername(),

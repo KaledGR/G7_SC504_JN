@@ -13,8 +13,8 @@ import java.util.List;
 
 @Entity
 @NamedStoredProcedureQuery(
-    name = "sp_estudiantes",
-    procedureName = "sp_estudiantes",
+    name = "obtener_estudiantes",
+    procedureName = "pkg_estudiante.obtener_estudiantes",
     resultClasses = Estudiante.class,
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
@@ -22,8 +22,8 @@ import java.util.List;
 )
 
 @NamedStoredProcedureQuery(
-    name = "sp_obtener_estudiante",
-    procedureName = "sp_obtener_estudiante",
+    name = "obtener_estudiante_por_id",
+    procedureName = "pkg_estudiante.obtener_estudiante_por_id",
     resultClasses = Estudiante.class,
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
@@ -33,7 +33,7 @@ import java.util.List;
 
 @NamedStoredProcedureQuery(
     name = "insertar_estudiante",
-    procedureName = "insertar_estudiante",
+    procedureName = "pkg_estudiante.insertar_estudiante",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_cedula", type = String.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
@@ -47,7 +47,7 @@ import java.util.List;
 
 @NamedStoredProcedureQuery(
     name = "actualizar_estudiante",
-    procedureName = "actualizar_estudiante",
+    procedureName = "pkg_estudiante.actualizar_estudiante",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Integer.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_cedula_estudiante", type = String.class),
@@ -62,7 +62,7 @@ import java.util.List;
 
 @NamedStoredProcedureQuery(
     name = "eliminar_estudiante",
-    procedureName = "eliminar_estudiante",
+    procedureName = "pkg_estudiante.eliminar_estudiante",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Integer.class)
     }

@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @NamedStoredProcedureQuery(
     name = "insertar_usuario",
-    procedureName = "insertar_usuario",
+    procedureName = "pkg_usuarios.insertar_usuario",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_username", type = String.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_password", type = String.class),
@@ -25,7 +25,7 @@ import java.util.List;
 )
 @NamedStoredProcedureQuery(
     name = "obtener_usuarios",
-    procedureName = "obtener_usuarios",
+    procedureName = "pkg_usuarios.obtener_usuarios",
     resultClasses = Usuario.class,
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
@@ -33,16 +33,16 @@ import java.util.List;
 )
 @NamedStoredProcedureQuery(
     name = "obtener_usuario_por_id",
-    procedureName = "obtener_usuario_por_id",
+    procedureName = "pkg_usuarios.obtener_usuario_por_id",
     resultClasses = Usuario.class,
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_usuario", type = Long.class),
-        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_cursor", type = void.class)
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
     }
 )
 @NamedStoredProcedureQuery(
     name = "actualizar_usuario",
-    procedureName = "actualizar_usuario",
+    procedureName = "pkg_usuarios.actualizar_usuario",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_usuario", type = Integer.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_username", type = String.class),
@@ -55,7 +55,7 @@ import java.util.List;
 )
 @NamedStoredProcedureQuery(
     name = "eliminar_usuario",
-    procedureName = "eliminar_usuario",
+    procedureName = "pkg_usuarios.eliminar_usuario",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_usuario", type = Integer.class)
     }
@@ -64,7 +64,7 @@ import java.util.List;
 
 
 @Data
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1l;
@@ -87,8 +87,8 @@ public class Usuario implements Serializable {
     @Column(name = "activo")
     private String activo;
 
-     @OneToMany(mappedBy = "usuario")
-    private List<Rol> rol;
+    @OneToMany(mappedBy = "usuario")
+    private List<Rol> roles;
      
     
 }

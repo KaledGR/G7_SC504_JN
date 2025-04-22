@@ -20,20 +20,19 @@ public interface MateriasDao extends JpaRepository<Materias, Long> {
 
     @Procedure(name = "insertar_materia")
     void insertarMateria(
+            @Param("p_codigo_materia") String codigoMateria,
             @Param("p_nombre_materia") String nombreMateria,
-            @Param("p_descripcion") String descripcion,
-            @Param("p_codigo_materia") String codigoMateria
+            @Param("p_descripcion") String descripcion
     );
-    
+
     @Procedure(name = "actualizar_materia")
     void actualizarMateria(
-        @Param("p_id_materia") Long idMateria,
-        @Param("p_nombre_materia") String nombreMateria,
-        @Param("p_descripcion") String descripcion,
-        @Param("p_codigo_materia") String codigoMateria
+            @Param("p_id_materia") Long idMateria,
+            @Param("p_codigo_materia") String codigoMateria,
+            @Param("p_nombre_materia") String nombreMateria,
+            @Param("p_descripcion") String descripcion
     );
-    
-    
-     @Procedure(name = "eliminar_materia")
+
+    @Procedure(name = "eliminar_materia")
     void eliminarMateria(@Param("p_id_materia") Long idMateria);
 }

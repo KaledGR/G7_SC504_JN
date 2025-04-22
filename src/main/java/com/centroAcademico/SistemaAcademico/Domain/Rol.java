@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 @NamedStoredProcedureQuery(
     name = "insertar_rol",
-    procedureName = "insertar_rol",
+    procedureName = "pkg_rol.insertar_rol",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_usuario", type = Integer.class)
@@ -19,7 +19,7 @@ import java.io.Serializable;
 )
 @NamedStoredProcedureQuery(
     name = "obtener_roles",
-    procedureName = "obtener_roles",
+    procedureName = "pkg_rol.obtener_roles",
     resultClasses = Rol.class,
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
@@ -27,16 +27,16 @@ import java.io.Serializable;
 )
 @NamedStoredProcedureQuery(
     name = "obtener_rol_por_id",
-    procedureName = "obtener_rol_por_id",
+    procedureName = "pkg_rol.obtener_rol_por_id",
     resultClasses = Rol.class,
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_rol", type = Integer.class),
-        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_cursor", type = void.class)
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
     }
 )
 @NamedStoredProcedureQuery(
     name = "actualizar_rol",
-    procedureName = "actualizar_rol",
+    procedureName = "pkg_rol.actualizar_rol",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_rol", type = Integer.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
@@ -45,7 +45,7 @@ import java.io.Serializable;
 )
 @NamedStoredProcedureQuery(
     name = "eliminar_rol",
-    procedureName = "eliminar_rol",
+    procedureName = "pkg_rol.eliminar_rol",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_rol", type = Integer.class)
     }
@@ -65,8 +65,8 @@ public class Rol implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rol")
     private Long idRol;
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_Rol")
+    private String nombreRol;
     //    @Column(name="id_usuario")
 //    private Long idUsuario;
 
