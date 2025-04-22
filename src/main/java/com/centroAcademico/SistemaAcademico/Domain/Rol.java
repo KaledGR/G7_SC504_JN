@@ -8,8 +8,54 @@ import lombok.Data;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
-@Data
 @Entity
+@NamedStoredProcedureQuery(
+    name = "insertar_rol",
+    procedureName = "pkg_rol.insertar_rol",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_usuario", type = Integer.class)
+    }
+)
+@NamedStoredProcedureQuery(
+    name = "obtener_roles",
+    procedureName = "pkg_rol.obtener_roles",
+    resultClasses = Rol.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
+)
+@NamedStoredProcedureQuery(
+    name = "obtener_rol_por_id",
+    procedureName = "pkg_rol.obtener_rol_por_id",
+    resultClasses = Rol.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_rol", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
+)
+@NamedStoredProcedureQuery(
+    name = "actualizar_rol",
+    procedureName = "pkg_rol.actualizar_rol",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_rol", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_usuario", type = Integer.class)
+    }
+)
+@NamedStoredProcedureQuery(
+    name = "eliminar_rol",
+    procedureName = "pkg_rol.eliminar_rol",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_rol", type = Integer.class)
+    }
+)
+
+
+
+
+
+@Data
 @Table(name = "rol")
 public class Rol implements Serializable {
 
@@ -19,8 +65,8 @@ public class Rol implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rol")
     private Long idRol;
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_Rol")
+    private String nombreRol;
     //    @Column(name="id_usuario")
 //    private Long idUsuario;
 
@@ -28,12 +74,5 @@ public class Rol implements Serializable {
     @JoinColumn(name = "id_usuario", nullable = true)
     private Usuario usuario;
     
-     //Pruebas por error de compilación - Anthony
-    public Long getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(Long idRol) {
-        this.idRol = idRol;
-    }
+    
 }

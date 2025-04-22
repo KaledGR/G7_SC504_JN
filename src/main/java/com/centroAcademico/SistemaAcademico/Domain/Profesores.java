@@ -10,8 +10,59 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Data
 @Entity
+@NamedStoredProcedureQuery(
+    name = "obtener_profesores",
+    procedureName = "pkg_profesores.obtener_profesores",
+    resultClasses = Profesores.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
+)
+
+@NamedStoredProcedureQuery(
+    name = "obtener_profesor_por_id",
+    procedureName = "pkg_profesores.obtener_profesor_por_id",
+    resultClasses = Profesores.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_profesor", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
+)
+
+@NamedStoredProcedureQuery(
+    name = "insertar_profesor",
+    procedureName = "pkg_profesores.insertar_profesor",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_cedula", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_apellido", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_codigo_profesor", type = String.class)
+    }
+)
+
+@NamedStoredProcedureQuery(
+    name = "actualizar_profesor",
+    procedureName = "pkg_profesores.actualizar_profesor",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_profesor", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_cedula_profesor", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_apellido", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_codigo_profesor", type = String.class)
+    }
+)
+
+@NamedStoredProcedureQuery(
+    name = "eliminar_profesor",
+    procedureName = "pkg_profesores.eliminar_profesor",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_profesor", type = Integer.class)
+    }
+)
+
+@Data
+
 @Table(name="profesores")
 public class Profesores implements Serializable {
     
@@ -38,20 +89,6 @@ public class Profesores implements Serializable {
     private List<Notas> notas;
 
      //Pruebas por error de compilación - Anthony
-    public Long getIdProfesor() {
-        return idProfesor;
-    }
-
-    public void setIdProfesor(Long idProfesor) {
-        this.idProfesor = idProfesor;
-    }
-    
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-      this.nombre = nombre;
-    }
+   
     
 }

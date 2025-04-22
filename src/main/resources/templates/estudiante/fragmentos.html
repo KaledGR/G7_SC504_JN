@@ -149,7 +149,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/estudiante/guardar}" 
+                          th:action="@{/estudiante/actualizar}" 
                           th:object="${estudiante}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
@@ -166,7 +166,7 @@
 
                                             <div class="mb-3">
                                                 <label for="cedulaEstudiante">Cedula del estudiante</label>
-                                                <input class="text" type="form-control" name="cedulaEstudiante" th:field="*{cedulaEstudiante}" id="activo" />
+                                                <input class="form-control" type="text" name="cedulaEstudiante" th:field="*{cedulaEstudiante}" id="activo" />
                                             </div>
                                             <div class="mb-3">
                                                 <label for="nombre">Nombre</label>
@@ -187,6 +187,10 @@
                                             <div class="mb-3">
                                                 <label for="correoElectronico">Correo Electronico</label>
                                                 <input type="text" class="form-control" name="correoElectronico" th:field="*{correoElectronico}" required="true"/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="correoElectronico">Codigo Estudiante</label>
+                                                <input type="text" class="form-control" name="codigoEstudiante" th:field="*{codigoEstudiante}" required="true"/>
                                             </div>
 
                                         </div>

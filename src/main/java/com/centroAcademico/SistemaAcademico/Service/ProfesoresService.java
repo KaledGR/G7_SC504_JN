@@ -21,10 +21,12 @@ public interface ProfesoresService {
     
     //Actualiza un registro en la tabla profesores si el idprofesores existe
     //Crea un registro en la tabla profesores si  idprofesores no tiene valor
-    public void save (Profesores profesor);
+    public void insertarProfesor (Profesores profesor);
+    
+    public void actualizarProfesor (Profesores profesor);
     
     //Elimina el registro de la tabla profesores si idprofesores eciste en la tabla
-    public void delete(Profesores profesor);
+    public void eliminar(Profesores profesor);
 
 
    

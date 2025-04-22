@@ -47,13 +47,20 @@ public class HorariosController {
     @PostMapping("/guardar")
     public String guardar(Horarios horarios) {
 
-        horariosService.save(horarios);
+        horariosService.insertarHorario(horarios);
+        return "redirect:/horarios/listado";
+    }
+    
+     @PostMapping("/actualizar")
+    public String actualizar(Horarios horarios) {
+
+        horariosService.actualizarHorario(horarios);
         return "redirect:/horarios/listado";
     }
 
     @GetMapping("/eliminar/{idHorario}")
     public String eliminar(Horarios horarios) {
-        horariosService.delete(horarios);
+        horariosService.eliminarHorario(horarios);
         return "redirect:/horarios/listado";
     }
 

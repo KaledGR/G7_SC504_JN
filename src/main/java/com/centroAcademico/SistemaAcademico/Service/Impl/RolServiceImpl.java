@@ -23,26 +23,38 @@ public class RolServiceImpl implements RolService {
     @Override
     @Transactional(readOnly=true)
     public List<Rol> getRoles() {
-        var lista = rolDao.findAll();
+        var lista = rolDao.getRoles();
         return lista;
     }
 
     @Override
     @Transactional(readOnly=true)
     public Rol getRol(Rol rol) {
-        return rolDao.findById(rol.getIdRol()).orElse(null);
+        List<Rol> roles = rolDao.getRol(rol.getIdRol());
+        return roles.isEmpty() ? null : roles.get(0);
     }
 
     @Override
     @Transactional
-    public void save(Rol rol) {
-        rolDao.save(rol);
+    public void insertarRol(Rol rol) {
+        rolDao.insertarRol(
+                rol.getNombreRol(),
+                rol.getUsuario().getIdUsuario());
+    }
+    
+    @Override
+    @Transactional
+    public void actualizarRol(Rol rol) {
+        rolDao.actualizarRol(
+                rol.getIdRol(),
+                rol.getNombreRol(),
+                rol.getUsuario().getIdUsuario());
     }
 
     @Override
     @Transactional
-    public void delete(Rol rol) {
-        rolDao.delete(rol);
+    public void eliminarRol(Rol rol) {
+        rolDao.eliminarRol(rol.getIdRol());
     }
     
     

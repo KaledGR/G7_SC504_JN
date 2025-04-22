@@ -44,7 +44,7 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="cedulaMaterias">Codigo de la materia</label>
-                                    <input class="text" type="form-control" name="codigoMateria" required="true"/>
+                                    <input class="form-control" type="text" name="codigoMateria" required="true"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="nombre">Nombre de la materia</label>
@@ -129,7 +129,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/materias/guardar}" 
+                          th:action="@{/materias/actualizar}" 
                           th:object="${materia}"
                           class="was-validated"                          
                           enctype="multipart/form-data">

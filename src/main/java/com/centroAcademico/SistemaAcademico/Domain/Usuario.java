@@ -10,9 +10,61 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Data
 @Entity
-@Table(name = "usuario")
+@NamedStoredProcedureQuery(
+    name = "insertar_usuario",
+    procedureName = "pkg_usuarios.insertar_usuario",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_username", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_password", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_apellidos", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_correo", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_activo", type = String.class)
+    }
+)
+@NamedStoredProcedureQuery(
+    name = "obtener_usuarios",
+    procedureName = "pkg_usuarios.obtener_usuarios",
+    resultClasses = Usuario.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
+)
+@NamedStoredProcedureQuery(
+    name = "obtener_usuario_por_id",
+    procedureName = "pkg_usuarios.obtener_usuario_por_id",
+    resultClasses = Usuario.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_usuario", type = Long.class),
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
+)
+@NamedStoredProcedureQuery(
+    name = "actualizar_usuario",
+    procedureName = "pkg_usuarios.actualizar_usuario",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_usuario", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_username", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_password", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_apellidos", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_correo", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_activo", type = String.class)
+    }
+)
+@NamedStoredProcedureQuery(
+    name = "eliminar_usuario",
+    procedureName = "pkg_usuarios.eliminar_usuario",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_usuario", type = Integer.class)
+    }
+)
+
+
+
+@Data
+@Table(name = "usuarios")
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1l;
@@ -33,17 +85,10 @@ public class Usuario implements Serializable {
     @Column(name = "correo")
     private String correo;  
     @Column(name = "activo")
-    private boolean activo;
+    private String activo;
 
-     @OneToMany(mappedBy = "usuario")
-    private List<Rol> rol;
+    @OneToMany(mappedBy = "usuario")
+    private List<Rol> roles;
      
-    //Pruebas por error de compilación - Anthony
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+    
 }

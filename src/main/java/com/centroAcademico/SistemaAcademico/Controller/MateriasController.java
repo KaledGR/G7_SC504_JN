@@ -32,13 +32,20 @@ public class MateriasController {
     @PostMapping("/guardar")
     public String guardar(Materias materias){
     
-            materiasService.save(materias);
+            materiasService.insertarMateria(materias);
             return "redirect:/materias/listado";
     }
     
-    @GetMapping("/eliminar/{idMaterias}")
+    @PostMapping("/actualizar")
+    public String actualizar(Materias materia){
+    
+            materiasService.actualizarMateria(materia);
+            return "redirect:/materias/listado";
+    }
+    
+    @GetMapping("/eliminar/{idMateria}")
     public String eliminar(Materias materias){
-        materiasService.delete(materias);
+        materiasService.eliminar(materias);
         return "redirect:/materias/listado";
     }
     

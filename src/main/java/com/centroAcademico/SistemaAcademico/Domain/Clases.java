@@ -33,11 +33,5 @@ public class Clases implements Serializable{
     private Materias idAula;
     
     //Pruebas por error de compilación - Anthony
-    public Long getIdClases() {
-        return idClase;
-    }
-
-    public void setIdClases(Long idClase) {
-        this.idClase = idClase;
-    }
+    
 }

@@ -21,10 +21,12 @@ public interface HorariosService {
     
     //Actualiza un registro en la tabla horarios si el idhorarios existe
     //Crea un registro en la tabla horarios si  idhorarios no tiene valor
-    public void save (Horarios horarios);
+    public void insertarHorario (Horarios horarios);
+    
+    public void actualizarHorario (Horarios horarios);
     
     //Elimina el registro de la tabla horarios si idhorarios eciste en la tabla
-    public void delete(Horarios horarios);
+    public void eliminarHorario(Horarios horarios);
     
 }
     
