@@ -4,7 +4,6 @@
  */
 package com.centroAcademico.SistemaAcademico.Service.Impl;
 
-
 import com.centroAcademico.SistemaAcademico.Dao.RolDao;
 import com.centroAcademico.SistemaAcademico.Domain.Usuario;
 
@@ -24,11 +23,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     private UsuarioDao usuarioDao;
     @Autowired
     private RolDao rolDao;
-    
-   
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
 
     @Override
     @Transactional(readOnly = true)
@@ -72,27 +69,22 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void insertarUsuario(Usuario usuario) {
         String passwordHashed = passwordEncoder.encode(usuario.getPassword());
         usuario.setPassword(passwordHashed);
-        usuarioDao.insertarUsuario(         
+        usuarioDao.insertarUsuario(
                 usuario.getUsername(),
                 usuario.getPassword(),
                 usuario.getNombre(),
                 usuario.getApellidos(),
                 usuario.getCorreo(),
                 usuario.getActivo());
-         
-           
-        
+
     }
-    
+
     @Override
     @Transactional
-    public void actualizarUsuario(Usuario usuario) {
-         String passwordHashed = passwordEncoder.encode(usuario.getPassword());
-         usuario.setPassword(passwordHashed);
+    public void actualizarUsuario(Usuario usuario) {        
         usuarioDao.actualizarUsuario(
                 usuario.getIdUsuario(),
                 usuario.getUsername(),
-                usuario.getPassword(),
                 usuario.getNombre(),
                 usuario.getApellidos(),
                 usuario.getCorreo(),
@@ -108,5 +100,3 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioDao.eliminarUsuario(usuario.getIdUsuario());
     }
 }
-    
-

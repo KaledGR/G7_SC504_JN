@@ -45,8 +45,7 @@ import java.util.List;
     procedureName = "pkg_usuarios.actualizar_usuario",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_usuario", type = Integer.class),
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_username", type = String.class),
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_password", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_username", type = String.class),      
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_apellidos", type = String.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_correo", type = String.class),
