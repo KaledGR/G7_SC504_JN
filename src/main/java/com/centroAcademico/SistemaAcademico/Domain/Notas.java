@@ -8,10 +8,17 @@ import java.math.BigDecimal;
 
 @Entity
 @NamedStoredProcedureQuery(
-    name = "crear_nota",
-    procedureName = "pkg_notas.crear",
+    name = "obtener_notas",
+    procedureName = "pkg_notas.obtener_notas",
+    resultClasses = Notas.class,
     parameters = {
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_nota", type = Long.class),
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
+)
+@NamedStoredProcedureQuery(
+    name = "crear_nota",
+    procedureName = "pkg_notas.insertar_notas",
+    parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_profesor", type = Long.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_materia", type = Long.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
@@ -20,7 +27,7 @@ import java.math.BigDecimal;
 )
 @NamedStoredProcedureQuery(
     name = "actualizar_notas",
-    procedureName = "pkg_notas.actualizar",
+    procedureName = "pkg_notas.actualizar_notas",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_nota", type = Long.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_profesor", type = Long.class),
@@ -31,14 +38,14 @@ import java.math.BigDecimal;
 )
 @NamedStoredProcedureQuery(
     name = "eliminar_notas",
-    procedureName = "pkg_notas.eliminar",
+    procedureName = "pkg_notas.eliminar_notas",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_nota", type = Long.class)
     }
 )
 @NamedStoredProcedureQuery(
     name = "obtener_nota_por_id",
-    procedureName = "pkg_notas.obtener_por_id",
+    procedureName = "pkg_notas.obtener_notas_por_id",
     resultClasses = Notas.class,
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_nota", type = Long.class),

@@ -15,9 +15,12 @@ public interface ArchivosService {
 
     // Actualiza un registro en la tabla materias si el idmaterias existe
     // Crea un registro en la tabla materias si idmaterias no tiene valor
-    public void save(Archivos archivos);
+    public void insertarArchivo(Archivos archivos);
+    
+    public void actualizarArchivo(Archivos archivo);
 
     // Elimina el registro de la tabla materias si idmaterias eciste en la tabla
     public void delete(Archivos archivos);
+
 
 }

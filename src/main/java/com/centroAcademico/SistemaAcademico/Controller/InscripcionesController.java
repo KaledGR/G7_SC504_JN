@@ -34,7 +34,7 @@ public class InscripcionesController {
         var materias = materiasService.getMaterias();
         model.addAttribute("materias", materias);
         
-        var estudiantes = estudiantesService.getEstudiantes();
+        var estudiantes = estudiantesService.obtenerEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
 
         return "/inscripciones/listado";
@@ -61,7 +61,7 @@ public class InscripcionesController {
         var materias = materiasService.getMaterias();
         model.addAttribute("materias", materias);
         
-        var estudiantes = estudiantesService.getEstudiantes();
+        var estudiantes = estudiantesService.obtenerEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
         
         return "/clases/modifica";

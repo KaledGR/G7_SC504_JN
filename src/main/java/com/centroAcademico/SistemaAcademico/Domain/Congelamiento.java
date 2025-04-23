@@ -8,36 +8,49 @@ import java.time.LocalDate;
 
 @Entity
 @NamedStoredProcedureQuery(
-name = "crear_congelamiento",// es que se llama no necesariamente igual al nombre del procedimiento almacenado enm la db
-procedureName = "pkg_congelamiento.crear",// este es el que esta en la db 
-parameters = { // estos son los parametros que recibe el procedimiento almacenado
-    @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_congelamiento", type = Long.class),
-    @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
-    @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_fecha_complemento", type = String.class)
-}
+    name = "obtener_congelamientos",
+    procedureName = "pkg_congelamiento.obtener_congelamientos",
+    resultClasses = Congelamiento.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
 )
+
 @NamedStoredProcedureQuery(
-name = "actualizar_congelamiento",// es que se llama no necesariamente igual al nombre del procedimiento almacenado enm la db
-procedureName = "pkg_congelamiento.actualizar",// este es el que esta en la db 
-parameters = { // estos son los parametros que recibe el procedimiento almacenado
-    @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_congelamiento", type = Long.class),
-    @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
-    @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_fecha_complemento", type = String.class)
-}
+    name = "obtener_congelamiento_por_id",
+    procedureName = "pkg_congelamiento.obtener_congelamieno_por_id",
+    resultClasses = Congelamiento.class,
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_congelamiento", type = Long.class),
+        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
+    }
 )
+
 @NamedStoredProcedureQuery(
-name = "eliminar_congelamiento",// es que se llama no necesariamente igual al nombre del procedimiento almacenado enm la db
-procedureName = "pkg_congelamiento.eliminar",// este es el que esta en la db 
-parameters = { // estos son los parametros que recibe el procedimiento almacenado
-    @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_congelamiento", type = Long.class),
- }
+    name = "insertar_congelamiento",
+    procedureName = "pkg_congelamiento.insertar_congelamiento",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_fecha_complemento", type = String.class)
+    }
 )
+
 @NamedStoredProcedureQuery(
-name = "obtener_congelamiento",// es que se llama no necesariamente igual al nombre del procedimiento almacenado enm la db
-procedureName = "pkg_congelamiento.obtener",// este es el que esta en la db 
-parameters = { // estos son los parametros que recibe el procedimiento almacenado
-    @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_congelamiento", type = Long.class),
- }
+    name = "actualizar_congelamiento",
+    procedureName = "pkg_congelamiento.actualizar_congelamiento",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_congelamiento", type = Long.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_fecha_complemento", type = String.class)
+    }
+)
+
+@NamedStoredProcedureQuery(
+    name = "eliminar_congelamiento",
+    procedureName = "pkg_congelamiento.eliminar_congelamiento",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_congelamiento", type = Long.class)
+    }
 )
 
 

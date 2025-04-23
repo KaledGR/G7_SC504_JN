@@ -10,9 +10,11 @@ import java.util.List;
 
 public interface NotasDao extends JpaRepository<Notas, Long> {
 
+    @Procedure("obtener_notas")
+    List<Notas> obtenerNotas();
+    
     @Procedure(name = "insertar_notas")
-    void insertarNotas(
-        @Param("p_id_nota") Long idNota,
+   List<Notas> insertarNotas(
         @Param("p_id_profesor") Long idProfesor,
         @Param("p_id_materia") Long idMateria, // Cambiado de Double a Long
         @Param("p_id_estudiante") Long idEstudiante, // Cambiado de Double a Long

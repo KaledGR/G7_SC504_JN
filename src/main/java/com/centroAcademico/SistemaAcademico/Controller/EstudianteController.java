@@ -23,7 +23,7 @@ public class EstudianteController {
     
     @GetMapping("/listado")
     public String listado(Model model){
-        var lista=estudianteService.getEstudiantes();
+        var lista=estudianteService.obtenerEstudiantes();
         model.addAttribute("estudiantes", lista);
         model.addAttribute("totalEstudiantes", lista.size());
         return "/estudiante/listado";
@@ -32,7 +32,7 @@ public class EstudianteController {
     @PostMapping("/guardar")
     public String guardar(Estudiante estudiante){
     
-            estudianteService.save(estudiante);
+            estudianteService.insertarEstudiante(estudiante);
             return "redirect:/estudiante/listado";
     }
     
@@ -51,7 +51,7 @@ public class EstudianteController {
     
      @GetMapping("/modificar/{idEstudiante}")
     public String modificar(Estudiante estudiante, Model model){
-        estudiante=estudianteService.getEstudiante(estudiante);
+        estudiante=estudianteService.obtenerEstudiantePorId(estudiante);
         model.addAttribute("estudiante",estudiante);
         return "/estudiante/modifica";
     }   

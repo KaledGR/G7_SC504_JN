@@ -35,7 +35,7 @@ public class NotasController {
 
     @GetMapping("/listado")
     public String listado(Model model) {
-        var lista = notasService.getNotas();
+        var lista = notasService.obtenerNotas();
         model.addAttribute("notas", lista);
         model.addAttribute("totalNotas", lista.size());
 
@@ -45,7 +45,7 @@ public class NotasController {
         var materias = materiasService.getMaterias();
         model.addAttribute("materias", materias);
         
-         var estudiantes = estudianteService.getEstudiantes();
+         var estudiantes = estudianteService.obtenerEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
 
         return "/notas/listado";
@@ -54,8 +54,15 @@ public class NotasController {
     @PostMapping("/guardar")
     public String guardar(Notas notas) {
 
-        notasService.save(notas);
+        notasService.insertarNota(notas);
         return "redirect:/notas/listado";
+    }
+    
+    @PostMapping("/actualizar")
+    public String actualizar(Notas notas){
+    
+            notasService.actualizarNota(notas);
+            return "redirect:/notas/listado";
     }
 
     @GetMapping("/eliminar/{idNota}")
@@ -66,7 +73,7 @@ public class NotasController {
 
     @GetMapping("/modificar/{idNota}")
     public String modificar(Notas nota, Model model) {
-        nota = notasService.getNota(nota);
+        nota = notasService.getNotaPorId(nota);
         model.addAttribute("nota", nota);
 
         var profesores = profesoresService.getProfesores();
@@ -75,7 +82,7 @@ public class NotasController {
         var materias = materiasService.getMaterias();
         model.addAttribute("materias", materias);
         
-         var estudiantes = estudianteService.getEstudiantes();
+         var estudiantes = estudianteService.obtenerEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
 
         return "/notas/modifica";
