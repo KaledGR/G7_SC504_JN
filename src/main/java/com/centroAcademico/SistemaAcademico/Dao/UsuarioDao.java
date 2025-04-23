@@ -21,9 +21,9 @@ public interface UsuarioDao  extends JpaRepository<Usuario,Long> {
 
     public boolean existsByUsernameOrCorreo(String username, String correo);
     
-     @Procedure(name = "insertar_usuario")
+     @Procedure(name = "insertar_usuario") // se define el procedimiento almacenado que se va a utilizar (el nombre que se le da ebn el codigo no en la db)
     void insertarUsuario(
-        @Param("p_username") String username,
+        @Param("p_username") String username, // y se le pasan los paremteros que recibe el procedimiento almacenado tal como la tabla de la db
         @Param("p_password") String password,
         @Param("p_nombre") String nombre,
         @Param("p_apellidos") String apellidos,
@@ -31,7 +31,7 @@ public interface UsuarioDao  extends JpaRepository<Usuario,Long> {
         @Param("p_activo") String activo
     );
 
-    @Procedure(name = "obtener_usuarios")
+    @Procedure(name = "obtener_usuarios") 
     List<Usuario> getUsuarios();
 
     @Procedure(name = "obtener_usuario_por_id")

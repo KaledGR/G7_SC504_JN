@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Service 
 public class ArchivosServiceImpl implements ArchivosService {
 
      @Autowired
@@ -29,8 +29,8 @@ public class ArchivosServiceImpl implements ArchivosService {
 
     @Override
     @Transactional(readOnly=true)
-    public Archivos getArchivo(Archivos archivos) {
-        return archivosDao.findById(archivos.getIdArchivo()).orElse(null);
+    public Archivos getArchivo(Long idArchivo) {
+        return archivosDao.findById(idArchivo).orElse(null);
     }
 
     @Override
@@ -43,6 +43,11 @@ public class ArchivosServiceImpl implements ArchivosService {
     @Transactional
     public void delete(Archivos archivos) {
         archivosDao.delete(archivos);
+    }
+    @Override
+    @Transactional
+    public Archivos insertArchivos(Archivos archivos) {
+        return archivosDao.save(archivos);
     }
     
     

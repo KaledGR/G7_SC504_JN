@@ -17,12 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/usuario")
-public class UsuarioController {
+public class UsuarioController { 
     
    @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/listado")
+    @GetMapping("/listado") // se define la ruta que se va a utilizar para acceder al listado de usuarios
     public String listado(Model model) {
         var usuarios = usuarioService.getUsuarios();
         model.addAttribute("usuarios", usuarios);

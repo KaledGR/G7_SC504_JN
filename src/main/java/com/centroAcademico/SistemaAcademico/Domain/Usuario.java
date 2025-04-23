@@ -11,10 +11,10 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@NamedStoredProcedureQuery(
-    name = "insertar_usuario",
-    procedureName = "pkg_usuarios.insertar_usuario",
-    parameters = {
+@NamedStoredProcedureQuery( // se definen los procedimientos almacenados que se van a utilizar 
+    name = "insertar_usuario",// es que se llama no necesariamente igual al nombre del procedimiento almacenado enm la db 
+    procedureName = "pkg_usuarios.insertar_usuario",// este es el que esta en la db 
+    parameters = { // estos son los parametros que recibe el procedimiento almacenado
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_username", type = String.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_password", type = String.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_nombre", type = String.class),
@@ -73,7 +73,7 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
 
-    private Long idUsuario;
+    private Long idUsuario;// se crean los atributos que se van a utilizar en la tabla de la base de datos
     @Column(name = "username")
     private String username;
     @Column(name = "password")
@@ -87,7 +87,7 @@ public class Usuario implements Serializable {
     @Column(name = "activo")
     private String activo;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario") 
     private List<Rol> roles;
      
     

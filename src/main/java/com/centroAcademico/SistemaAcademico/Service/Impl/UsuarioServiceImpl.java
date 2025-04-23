@@ -19,11 +19,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
-
+ 
     @Autowired
-    private UsuarioDao usuarioDao;
+    private UsuarioDao usuarioDao; //se conecta con el dao para poder utilizar los metodos que se encuentran en el dao 
     @Autowired
-    private RolDao rolDao;
+    private RolDao rolDao; 
     
    
     @Autowired
@@ -69,8 +69,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public void insertarUsuario(Usuario usuario) {
-        String passwordHashed = passwordEncoder.encode(usuario.getPassword());
+    public void insertarUsuario(Usuario usuario) { // se inserta un nuevo usuario si el id del usuario esta vacío
+        String passwordHashed = passwordEncoder.encode(usuario.getPassword());// esto lo ingno para mi caso de archivo porque no hay password
         usuario.setPassword(passwordHashed);
         usuarioDao.insertarUsuario(         
                 usuario.getUsername(),
@@ -86,7 +86,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     
     @Override
     @Transactional
-    public void actualizarUsuario(Usuario usuario) {
+    public void actualizarUsuario(Usuario usuario) { // se actualiza un usuario si el id del usuario NO esta vacío
          String passwordHashed = passwordEncoder.encode(usuario.getPassword());
          usuario.setPassword(passwordHashed);
         usuarioDao.actualizarUsuario(
@@ -104,7 +104,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public void eliminarUsuario(Usuario usuario) {
+    public void eliminarUsuario(Usuario usuario) { /// se elimina el usuario que tiene el id pasado por parámetro
         usuarioDao.eliminarUsuario(usuario.getIdUsuario());
     }
 }
