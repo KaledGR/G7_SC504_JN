@@ -1,12 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.centroAcademico.SistemaAcademico.Service.Impl;
 
-
 import com.centroAcademico.SistemaAcademico.Domain.Congelamiento;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,18 +11,17 @@ import com.centroAcademico.SistemaAcademico.Service.CongelamientoService;
 @Service
 public class CongelamientoServiceImpl implements CongelamientoService {
 
-     @Autowired
+    @Autowired
     private CongelamientoDao congelamientosDao;
-     
+
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Congelamiento> getCongelamientos() {
-        var lista = congelamientosDao.findAll();
-        return lista;
+        return congelamientosDao.findAll();
     }
 
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public Congelamiento getCongelamiento(Congelamiento congelamientos) {
         return congelamientosDao.findById(congelamientos.getIdCongelamiento()).orElse(null);
     }
@@ -44,6 +37,28 @@ public class CongelamientoServiceImpl implements CongelamientoService {
     public void delete(Congelamiento congelamientos) {
         congelamientosDao.delete(congelamientos);
     }
-    
-    
+
+    // Nuevo método para crear un congelamiento usando el procedimiento almacenado
+    @Transactional
+    public void crearCongelamiento(Long idCongelamiento, Long idEstudiante, String fechaComplemento) {
+        congelamientosDao.crearCongelamiento(idCongelamiento, idEstudiante, fechaComplemento);
+    }
+
+    // Nuevo método para actualizar un congelamiento usando el procedimiento almacenado
+    @Transactional
+    public void actualizarCongelamiento(Long idCongelamiento, Long idEstudiante, String fechaComplemento) {
+        congelamientosDao.actualizarCongelamiento(idCongelamiento, idEstudiante, fechaComplemento);
+    }
+
+    // Nuevo método para eliminar un congelamiento usando el procedimiento almacenado
+    @Transactional
+    public void eliminarCongelamiento(Long idCongelamiento) {
+        congelamientosDao.eliminarCongelamiento(idCongelamiento);
+    }
+
+    // Nuevo método para obtener un congelamiento usando el procedimiento almacenado
+    @Transactional(readOnly = true)
+    public Congelamiento obtenerCongelamiento(Long idCongelamiento) {
+        return congelamientosDao.obtenerCongelamiento(idCongelamiento);
+    }
 }
