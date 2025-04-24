@@ -17,7 +17,7 @@ public class Aulas implements Serializable{
     @Column(name = "id_aula")
     private Long idAula;
     
-    @Column(name = "numeroaula", nullable = false)
+    @Column(name = "numero_aula", nullable = false)
     private String numeroAula;
     
     @Column(name = "capacidad", nullable = false)

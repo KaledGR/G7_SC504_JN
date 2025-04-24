@@ -25,7 +25,7 @@ import java.util.List;
     procedureName = "pkg_profesores.obtener_profesor_por_id",
     resultClasses = Profesores.class,
     parameters = {
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_profesor", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_profesor", type = Long.class),
         @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "p_result", type = void.class)
     }
 )

@@ -41,7 +41,6 @@ public interface UsuarioDao  extends JpaRepository<Usuario,Long> {
     void actualizarUsuario(
         @Param("p_id_usuario") Long idUsuario,
         @Param("p_username") String username,
-        @Param("p_password") String password,
         @Param("p_nombre") String nombre,
         @Param("p_apellidos") String apellidos,
         @Param("p_correo") String correo,

@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @NamedStoredProcedureQuery(
@@ -31,7 +33,7 @@ import java.time.LocalDate;
     procedureName = "pkg_congelamiento.insertar_congelamiento",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_fecha_complemento", type = String.class)
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_fecha_complemento", type = Date.class)
     }
 )
 
@@ -41,7 +43,7 @@ import java.time.LocalDate;
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_congelamiento", type = Long.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_fecha_complemento", type = String.class)
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_fecha_complemento", type = Date.class)
     }
 )
 
@@ -71,8 +73,9 @@ public class Congelamiento implements Serializable {
     @JoinColumn(name = "id_estudiante", nullable = false)
     private Estudiante estudiante;
     
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "fecha_complemento", nullable = false)
-    private String fechaComplemento;
+    private Date fechaComplemento;
     
     //Pruebas por error de compilación - Anthony
     
