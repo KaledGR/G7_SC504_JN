@@ -86,5 +86,6 @@ public class Materias implements Serializable {
     @OneToMany(mappedBy = "materia")
     private List<Notas> notas;
     
+    
      
 }

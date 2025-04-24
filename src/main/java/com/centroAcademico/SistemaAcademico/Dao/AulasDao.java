@@ -7,27 +7,27 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface AulasDao extends JpaRepository<Aulas, Long>{
-    @Procedure(name = "crear")
+    
+    @Procedure(name = "insertar_aula")
     void insertarAula(
-            @Param("p_id_aula") Long idAula,
             @Param("p_numero_Aula") String numeroAula,
             @Param("p_capacidad") Integer capacidad
     );
 
-    @Procedure(name = "actualizar")
+    @Procedure(name = "actualizar_aula")
     void actualizarAula(
             @Param("p_id_aula") Long idAula,
             @Param("p_numero_Aula") String numeroAula,
             @Param("p_capacidad") Integer capacidad
     );
 
-    @Procedure(name = "eliminar")
+    @Procedure(name = "eliminar_aula")
     void eliminar(@Param("p_id_aula") Long idAula);
 
     @Procedure(name = "obtener_aulas")
-    List<Aulas> getAulas();
+    List<Aulas> obtenerAulas();
     
     @Procedure(name = "obtener_aulas_por_id")
-    List<Aulas> getAula(@Param("p_id_aula") Long idAula);
+    List<Aulas> obtenerAulaPorId(@Param("p_id_aula") Long idAula);
 
 }

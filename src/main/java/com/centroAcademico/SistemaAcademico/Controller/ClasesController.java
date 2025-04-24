@@ -34,7 +34,7 @@ public class ClasesController {
     
     @GetMapping("/listado")
     public String listado(Model model) {
-        var lista = clasesService.getClases();
+        var lista = clasesService.obtenerClases();
         model.addAttribute("clases", lista);
         model.addAttribute("totalClases", lista.size());
 
@@ -53,10 +53,17 @@ public class ClasesController {
         return "/clases/listado";
     }
 
+     @PostMapping("/actualizar")
+    public String actualizar(Clases clase){
+    
+            clasesService.actualizarClase(clase);
+            return "redirect:/clases/listado";
+    }
+    
     @PostMapping("/guardar")
     public String guardar(Clases clases) {
 
-        clasesService.save(clases);
+        clasesService.insertarClase(clases);
         return "redirect:/clases/listado";
     }
 
@@ -68,7 +75,7 @@ public class ClasesController {
 
     @GetMapping("/modificar/{idClase}")
     public String modificar(Clases clases, Model model) {
-        clases = clasesService.getClases(clases);
+        clases = clasesService.obtenerClasePorId(clases);
         model.addAttribute("clases", clases);
         
         var horarios = horariosService.getHorarios();

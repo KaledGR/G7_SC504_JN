@@ -63,6 +63,7 @@ public class Notas implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_nota")
     private Long idNota;
+    
     @ManyToOne
     @JoinColumn(name = "id_profesor", nullable = true)
     private Profesores profesor;
@@ -70,9 +71,11 @@ public class Notas implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_materia", nullable = true)
     private Materias materia;
+    
     @ManyToOne
-    @JoinColumn(name = "id_estudiante", nullable = false)
+    @JoinColumn(name = "id_estudiante", nullable = true)
     private Estudiante estudiante;
+    
     @Column(name = "calificacion", precision = 5, scale = 2, nullable = false)
     private BigDecimal calificacion;
     
