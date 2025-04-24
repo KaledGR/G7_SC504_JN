@@ -54,13 +54,13 @@ public class InscripcionesController {
             return "redirect:/inscripciones/listado";
     }
     
-    @GetMapping("/eliminar/{idInscripciones}")
+    @GetMapping("/eliminar/{idInscripcion}")
     public String eliminar(Inscripciones inscripciones) {
         inscripcionesService.eliminar(inscripciones);
         return "redirect:/inscripciones/listado";
     }
 
-    @GetMapping("/modificar/{idInscripciones}")
+    @GetMapping("/modificar/{idInscripcion}")
     public String modificar(Inscripciones inscripciones, Model model) {
         inscripciones = inscripcionesService.getInscripcion(inscripciones);
         model.addAttribute("inscripciones", inscripciones);

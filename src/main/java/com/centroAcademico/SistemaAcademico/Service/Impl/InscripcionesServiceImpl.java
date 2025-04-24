@@ -17,7 +17,7 @@ public class InscripcionesServiceImpl implements InscripcionesService{
     @Transactional(readOnly=true)
     public List<Inscripciones> getInscripciones() {
         //var lista = inscripcionesDao.findAll();
-        var lista = inscripcionesDao.getInscripciones();
+        var lista = inscripcionesDao.obtenerInscripciones();
         return lista;
     }
 
@@ -25,7 +25,7 @@ public class InscripcionesServiceImpl implements InscripcionesService{
     @Transactional(readOnly=true)
     public Inscripciones getInscripcion(Inscripciones inscripcion) {
         //return inscripcionesDao.findById(inscripciones.getIdInscripcion()).orElse(null);
-        List<Inscripciones> inscripciones = inscripcionesDao.getInscripcion(inscripcion.getIdInscripcion());
+        List<Inscripciones> inscripciones = inscripcionesDao.obtenerInscripcionPorId(inscripcion.getIdInscripcion());
         return inscripciones.isEmpty() ? null : inscripciones.get(0);
     }
     

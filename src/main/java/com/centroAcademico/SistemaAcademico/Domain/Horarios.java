@@ -99,5 +99,7 @@ public class Horarios implements Serializable {
     @JoinColumn(name = "id_materia", nullable = true)
     private Materias materia;
     
+    
+    
      
 }

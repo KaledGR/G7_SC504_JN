@@ -9,33 +9,54 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class ClasesServiceImpl implements ClasesService{
-    
+public class ClasesServiceImpl implements ClasesService {
+
     @Autowired
     private ClasesDao clasesDao;
-    
+
     @Override
-    @Transactional(readOnly=true)
-    public List<Clases> getClases() {
-        var lista = clasesDao.findAll();
+    @Transactional(readOnly = true)
+    public List<Clases> obtenerClases() {
+        var lista = clasesDao.obtenerClases();
         return lista;
     }
 
     @Override
-    @Transactional(readOnly=true)
-    public Clases getClases(Clases clases) {
-        return clasesDao.findById(clases.getIdClase()).orElse(null);
+    @Transactional(readOnly = true)
+    public Clases obtenerClasePorId(Clases clase) {
+        List<Clases> clases = clasesDao.obtenerClasePorId(clase.getIdClase());
+        return clases.isEmpty() ? null : clases.get(0);
     }
 
     @Override
     @Transactional
-    public void save(Clases clases) {
-        clasesDao.save(clases);
+    public void insertarClase(Clases clase) {
+        clasesDao.insertarClase(
+                clase.getHorario().getIdHorario(),
+                clase.getProfesor().getIdProfesor(),
+                clase.getMateria().getIdMateria(),
+                clase.getAula().getIdAula()
+        );
+                
+                
+        
     }
 
     @Override
     @Transactional
-    public void delete(Clases clases) {
-        clasesDao.delete(clases);
+    public void actualizarClase(Clases clase) {
+        clasesDao.actualizarClase(
+                clase.getIdClase(),
+                clase.getHorario().getIdHorario(),
+                clase.getProfesor().getIdProfesor(),
+                clase.getMateria().getIdMateria(),
+                clase.getAula().getIdAula()
+        );
+    }
+
+    @Override
+    @Transactional
+    public void delete(Clases clase) {
+        clasesDao.eliminarClase(clase.getIdClase());
     }
 }

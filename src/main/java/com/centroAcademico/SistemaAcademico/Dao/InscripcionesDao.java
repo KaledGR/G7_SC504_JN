@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface InscripcionesDao extends JpaRepository<Inscripciones, Long>{
-    @Procedure(name = "crear_inscripcion")
+    @Procedure(name = "insertar_inscripcion")
     void insertarInscripcion(
             @Param("p_id_materia") Long materia,
             @Param("p_id_estudiante") Long estudiante
@@ -24,8 +24,8 @@ public interface InscripcionesDao extends JpaRepository<Inscripciones, Long>{
     void eliminar(@Param("p_id_inscripcion") Long idInscripcion);
 
     @Procedure(name = "obtener_inscripciones")
-    List<Inscripciones> getInscripciones();
+    List<Inscripciones> obtenerInscripciones();
     
-    @Procedure(name = "obtener_inscripciones_por_id")
-    List<Inscripciones> getInscripcion(@Param("p_id_inscripcion") Long idInscripcion);
+    @Procedure(name = "obtener_inscripcion_por_id")
+    List<Inscripciones> obtenerInscripcionPorId(@Param("p_id_inscripcion") Long idInscripcion);
 }
