@@ -53,8 +53,8 @@ SistemaAcademico/
 
 1. Abre **Oracle SQL Developer**.
 2. Conéctate a tu base de datos.
-3. Ejecuta el script `01_tablas_inserts.sql` para crear tablas e insertar datos iniciales.
-4. Luego ejecuta `02_paquetes_procedimientos.sql` para crear los **paquetes PL/SQL**, uno por entidad.
+3. Ejecuta el script `Script_CentroAcademico.sql` para crear tablas e insertar datos iniciales.
+4. Luego ejecuta `Script_CA_Paquetes.sql` para crear los **paquetes PL/SQL**, uno por entidad.
 
 > **Nota:** Los paquetes contienen procedimientos con cursores que implementan operaciones CRUD.
 
