@@ -16,16 +16,47 @@ public class InscripcionesServiceImpl implements InscripcionesService{
     @Override
     @Transactional(readOnly=true)
     public List<Inscripciones> getInscripciones() {
-        var lista = inscripcionesDao.findAll();
+        //var lista = inscripcionesDao.findAll();
+        var lista = inscripcionesDao.getInscripciones();
         return lista;
     }
 
     @Override
     @Transactional(readOnly=true)
-    public Inscripciones getInscripciones(Inscripciones inscripciones) {
-        return inscripcionesDao.findById(inscripciones.getIdInscripcion()).orElse(null);
+    public Inscripciones getInscripcion(Inscripciones inscripcion) {
+        //return inscripcionesDao.findById(inscripciones.getIdInscripcion()).orElse(null);
+        List<Inscripciones> inscripciones = inscripcionesDao.getInscripcion(inscripcion.getIdInscripcion());
+        return inscripciones.isEmpty() ? null : inscripciones.get(0);
+    }
+    
+
+
+    @Override
+    @Transactional
+    public void insertarInscripcion(Inscripciones inscripcion) {
+        inscripcionesDao.insertarInscripcion(
+                inscripcion.getMateria().getIdMateria(),
+                inscripcion.getEstudiante().getIdEstudiante()
+        );
+    }
+    
+    @Override
+    @Transactional
+    public void actualizarInscripcion(Inscripciones inscripcion) {
+        inscripcionesDao.actualizarInscripcion(
+                inscripcion.getIdInscripcion(),
+                inscripcion.getMateria().getIdMateria(),
+                inscripcion.getEstudiante().getIdEstudiante()
+                );
+    }
+    
+    @Override
+    @Transactional
+    public void eliminar(Inscripciones inscripcion) {
+        inscripcionesDao.eliminar(inscripcion.getIdInscripcion());
     }
 
+/*
     @Override
     @Transactional
     public void save(Inscripciones clases) {
@@ -37,4 +68,7 @@ public class InscripcionesServiceImpl implements InscripcionesService{
     public void delete(Inscripciones clases) {
         inscripcionesDao.delete(clases);
     }
+*/
+
+
 }

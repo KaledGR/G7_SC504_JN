@@ -75,5 +75,27 @@ public class Congelamiento implements Serializable {
     private String fechaComplemento;
     
     //Pruebas por error de compilación - Anthony
-    
+    public Long getIdCongelamiento() {
+        return idCongelamiento;
+    }
+
+    public void setIdCongelamiento(Long idCongelamiento) {
+        this.idCongelamiento = idCongelamiento;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public String getFechaComplemento() {
+        return fechaComplemento;
+    }
+
+    public void setFechaComplemento(String fechaComplemento) {
+        this.fechaComplemento = fechaComplemento;
+    }
 }

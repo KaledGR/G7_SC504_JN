@@ -53,6 +53,10 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .requestMatchers(
                         "/estudiante/nuevo", "/estudiante/guardar","/estudiante/actualizar",
                         "/estudiante/modificar/**", "/estudiante/eliminar/**",
+                        "/aulas/nuevo", "/aulas/guardar","/aulas/actualizar",
+                        "/aulas/modificar/**", "/aulas/eliminar/**",
+                        "/inscripciones/nuevo", "/inscripciones/guardar","/inscripciones/actualizar",
+                        "/inscripciones/modificar/**", "/inscripciones/eliminar/**",
                         "/profesores/nuevo", "/profesores/guardar","/profesores/actualizar",
                         "/profesores/modificar/**", "/profesores/eliminar/**",
                         "/usuario/nuevo", "/usuario/guardar", "/usuario/actualizar",
@@ -66,6 +70,8 @@ public class ProjectConfig implements WebMvcConfigurer {
                 ).hasRole("ADMIN")
                 .requestMatchers(
                         "/estudiante/listado",
+                        "/aulas/listado",
+                        "/inscripciones/listado",
                         "/materias/listado",
                         "/profesores/listado",
                         "/horarios/listado",

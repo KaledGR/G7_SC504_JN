@@ -99,5 +99,56 @@ public class Horarios implements Serializable {
     @JoinColumn(name = "id_materia", nullable = true)
     private Materias materia;
     
+    
+    // Getters y Setters
+
+    public Long getIdHorario() {
+        return idHorario;
+    }
+
+    public void setIdHorario(Long idHorario) {
+        this.idHorario = idHorario;
+    }
+
+    public String getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(String diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+
+    public Date getHorarioInc() {
+        return horarioInc;
+    }
+
+    public void setHorarioInc(Date horarioInc) {
+        this.horarioInc = horarioInc;
+    }
+
+    public Date getHorarioFin() {
+        return horarioFin;
+    }
+
+    public void setHorarioFin(Date horarioFin) {
+        this.horarioFin = horarioFin;
+    }
+
+    public Profesores getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesores profesor) {
+        this.profesor = profesor;
+    }
+
+    public Materias getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materias materia) {
+        this.materia = materia;
+    }
+    
      
 }

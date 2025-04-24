@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+
+
 @Data
 @Entity
 @Table(name = "Clases")
@@ -33,5 +35,35 @@ public class Clases implements Serializable{
     private Materias idAula;
     
     //Pruebas por error de compilación - Anthony
-    
+    public Long getIdClase() {
+        return idClase;
+    }
+
+    public void setIdClase(Long idClase) {
+        this.idClase = idClase;
+    }
+
+    public Horarios getIdHorario() {
+        return idHorario;
+    }
+
+    public void setIdHorario(Horarios idHorario) {
+        this.idHorario = idHorario;
+    }
+
+    public Profesores getIdProfesor() {
+        return idProfesor;
+    }
+
+    public void setIdProfesor(Profesores idProfesor) {
+        this.idProfesor = idProfesor;
+    }
+
+    public Materias getIdMateria() {
+        return idMateria;
+    }
+
+    public void setIdMateria(Materias idMateria) {
+        this.idMateria = idMateria;
+    }
 }

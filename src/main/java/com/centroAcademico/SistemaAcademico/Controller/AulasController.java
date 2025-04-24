@@ -31,19 +31,28 @@ public class AulasController {
     @PostMapping("/guardar")
     public String guardar(Aulas aulas) {
 
-        aulasService.save(aulas);
+        aulasService.insertarAula(aulas);
         return "redirect:/aulas/listado";
+    }
+    
+    @PostMapping("/actualizar")
+    public String actualizar(Aulas aulas){
+    
+            aulasService.actualizarAula(aulas);
+            return "redirect:/aulas/listado";
     }
 
     @GetMapping("/eliminar/{idAula}")
     public String eliminar(Aulas aulas) {
-        aulasService.delete(aulas);
+        aulasService.eliminar(aulas);
         return "redirect:/aulas/listado";
     }
+    
+    
 
     @GetMapping("/modificar/{idAula}")
     public String modificar(Aulas aulas, Model model) {
-        aulas = aulasService.getAulas(aulas);
+        aulas = aulasService.getAula(aulas);
         model.addAttribute("aulas", aulas);
         
         return "/aulas/modifica";

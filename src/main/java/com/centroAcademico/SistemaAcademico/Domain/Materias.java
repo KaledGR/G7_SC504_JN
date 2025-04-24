@@ -86,5 +86,37 @@ public class Materias implements Serializable {
     @OneToMany(mappedBy = "materia")
     private List<Notas> notas;
     
-     
+     // Getters y Setters
+
+    public Long getIdMateria() {
+        return idMateria;
+    }
+
+    public void setIdMateria(Long idMateria) {
+        this.idMateria = idMateria;
+    }
+
+    public String getNombreMateria() {
+        return nombreMateria;
+    }
+
+    public void setNombreMateria(String nombreMateria) {
+        this.nombreMateria = nombreMateria;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCodigoMateria() {
+        return codigoMateria;
+    }
+
+    public void setCodigoMateria(String codigoMateria) {
+        this.codigoMateria = codigoMateria;
+    }
 }

@@ -75,4 +75,44 @@ public class Notas implements Serializable {
     @Column(name = "calificacion", precision = 5, scale = 2, nullable = false)
     private BigDecimal calificacion;
     
+    public Long getIdNota() {
+        return idNota;
+    }
+
+    public void setIdNota(Long idNota) {
+        this.idNota = idNota;
+    }
+
+    public Profesores getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesores profesor) {
+        this.profesor = profesor;
+    }
+
+    public Materias getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materias materia) {
+        this.materia = materia;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public BigDecimal getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(BigDecimal calificacion) {
+        this.calificacion = calificacion;
+    }
+    
 }

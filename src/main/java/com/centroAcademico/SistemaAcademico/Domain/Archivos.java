@@ -69,5 +69,30 @@ public class Archivos implements Serializable {
     @Column(name = "tipo_Documento")
     private String tipoDocumento;
     
+    // Getters y Setters Anthony
+
+    public Long getIdArchivo() {
+        return idArchivo;
+    }
+
+    public void setIdArchivo(Long idArchivo) {
+        this.idArchivo = idArchivo;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public String getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
     
 }

@@ -89,6 +89,46 @@ public class Profesores implements Serializable {
     private List<Notas> notas;
 
      //Pruebas por error de compilación - Anthony
-   
+   // Getters y Setters
+
+    public Long getIdProfesor() {
+        return idProfesor;
+    }
+
+    public void setIdProfesor(Long idProfesor) {
+        this.idProfesor = idProfesor;
+    }
+
+    public String getCedulaProfesor() {
+        return cedulaProfesor;
+    }
+
+    public void setCedulaProfesor(String cedulaProfesor) {
+        this.cedulaProfesor = cedulaProfesor;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getCodigoProfesor() {
+        return codigoProfesor;
+    }
+
+    public void setCodigoProfesor(String codigoProfesor) {
+        this.codigoProfesor = codigoProfesor;
+    }
     
 }
