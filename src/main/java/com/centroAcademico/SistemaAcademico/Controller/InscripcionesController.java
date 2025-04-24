@@ -43,19 +43,26 @@ public class InscripcionesController {
     @PostMapping("/guardar")
     public String guardar(Inscripciones inscripciones) {
 
-        inscripcionesService.save(inscripciones);
-        return "redirect:/clases/listado";
+        inscripcionesService.insertarInscripcion(inscripciones);
+        return "redirect:/inscripciones/listado";
     }
 
+    @PostMapping("/actualizar")
+    public String actualizar(Inscripciones inscripciones){
+    
+            inscripcionesService.actualizarInscripcion(inscripciones);
+            return "redirect:/inscripciones/listado";
+    }
+    
     @GetMapping("/eliminar/{idInscripciones}")
     public String eliminar(Inscripciones inscripciones) {
-        inscripcionesService.delete(inscripciones);
+        inscripcionesService.eliminar(inscripciones);
         return "redirect:/inscripciones/listado";
     }
 
     @GetMapping("/modificar/{idInscripciones}")
     public String modificar(Inscripciones inscripciones, Model model) {
-        inscripciones = inscripcionesService.getInscripciones(inscripciones);
+        inscripciones = inscripcionesService.getInscripcion(inscripciones);
         model.addAttribute("inscripciones", inscripciones);
         
         var materias = materiasService.getMaterias();
@@ -64,7 +71,7 @@ public class InscripcionesController {
         var estudiantes = estudiantesService.obtenerEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
         
-        return "/clases/modifica";
+        return "/inscripciones/modifica";
     }
     
 }

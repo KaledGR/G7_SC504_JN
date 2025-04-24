@@ -17,17 +17,45 @@ public class AulasServiceImpl implements AulasService{
     @Override
     @Transactional(readOnly=true)
     public List<Aulas> getAulas() {
-        var lista = aulasDao.findAll();
+        //var lista = aulasDao.findAll();
+        var lista = aulasDao.getAulas();
         return lista;
     }
-
+    
     @Override
     @Transactional(readOnly=true)
-    public Aulas getAulas(Aulas aulas) {
-        return aulasDao.findById(aulas.getIdAula()).orElse(null);
+    public Aulas getAula(Aulas aula) {
+       List<Aulas> aulas = aulasDao.getAula(aula.getIdAula());
+        return aulas.isEmpty() ? null : aulas.get(0);
     }
 
     @Override
+    @Transactional
+    public void insertarAula(Aulas aulas) {
+        aulasDao.insertarAula(
+                aulas.getIdAula(),
+                aulas.getNumeroAula(),
+                aulas.getCapacidad()
+                );
+    }
+    
+    @Override
+    @Transactional
+    public void actualizarAula(Aulas aulas) {
+        aulasDao.actualizarAula(
+                aulas.getIdAula(),
+                aulas.getNumeroAula(),
+                aulas.getCapacidad()
+                );
+    }
+    
+    @Override
+    @Transactional
+    public void eliminar(Aulas aulas) {
+        aulasDao.eliminar(aulas.getIdAula());
+    }
+
+    /*@Override
     @Transactional
     public void save(Aulas aulas) {
         aulasDao.save(aulas);
@@ -37,5 +65,5 @@ public class AulasServiceImpl implements AulasService{
     @Transactional
     public void delete(Aulas aulas) {
         aulasDao.delete(aulas);
-    }
+    }*/
 }
