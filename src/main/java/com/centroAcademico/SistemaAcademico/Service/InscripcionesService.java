@@ -9,13 +9,17 @@ public interface InscripcionesService {
     public List<Inscripciones> getInscripciones();
 
     // Recupera el ristro de la tabla
-    public Inscripciones getInscripciones(Inscripciones inscripciones);
+    public Inscripciones getInscripcion(Inscripciones inscripciones);
 
     // Actualiza un registro en la tabla
     // Crea un registro en la tabla
-    public void save(Inscripciones inscripciones);
+    //public void save(Inscripciones inscripciones);
 
+    public void insertarInscripcion(Inscripciones inscripciones);
+    
+    public void actualizarInscripcion(Inscripciones inscripciones);
+    
     // Elimina el registro de la tabla
-    public void delete(Inscripciones inscripciones);
+    public void eliminar(Inscripciones inscripciones);
     
 }
