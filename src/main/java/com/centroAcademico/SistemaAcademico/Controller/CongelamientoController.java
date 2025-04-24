@@ -29,11 +29,11 @@ public class CongelamientoController {
 
     @GetMapping("/listado")
     public String listado(Model model) {
-        var lista = congelamientoService.getCongelamientos();
+        var lista = congelamientoService.obtenerCongelamientos();
         model.addAttribute("congelamientos", lista);
         model.addAttribute("totalCongelamientos", lista.size());
 
-        var estudiantes = estudianteService.getEstudiantes();
+        var estudiantes = estudianteService.obtenerEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
 
         return "/congelamiento/listado";
@@ -42,22 +42,28 @@ public class CongelamientoController {
     @PostMapping("/guardar")
     public String guardar(Congelamiento congelamientos) {
 
-        congelamientoService.save(congelamientos);
+        congelamientoService.insertarCongelamiento(congelamientos);
         return "redirect:/congelamiento/listado";
     }
 
     @GetMapping("/eliminar/{idCongelamiento}")
     public String eliminar(Congelamiento congelamientos) {
-        congelamientoService.delete(congelamientos);
+        congelamientoService.eliminarCongelamiento(congelamientos);
+        return "redirect:/congelamiento/listado";
+    }
+
+    @PostMapping("/actualizar")
+    public String actualizar(Congelamiento congelamiento) {
+        congelamientoService.actualizarCongelamiento(congelamiento);
         return "redirect:/congelamiento/listado";
     }
 
     @GetMapping("/modificar/{idCongelamiento}")
     public String modificar(Congelamiento congelamiento, Model model) {
-        congelamiento = congelamientoService.getCongelamiento(congelamiento);
+        congelamiento = congelamientoService.obtenerCongelamientoPorId(congelamiento);
         model.addAttribute("congelamiento", congelamiento);
 
-        var estudiantes = estudianteService.getEstudiantes();
+        var estudiantes = estudianteService.obtenerEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
 
         return "/congelamiento/modifica";

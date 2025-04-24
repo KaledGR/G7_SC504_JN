@@ -16,49 +16,45 @@ public class CongelamientoServiceImpl implements CongelamientoService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Congelamiento> getCongelamientos() {
-        return congelamientosDao.findAll();
+    public List<Congelamiento> obtenerCongelamientos() {
+        return congelamientosDao.obtenerCongelamientos();
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Congelamiento getCongelamiento(Congelamiento congelamientos) {
-        return congelamientosDao.findById(congelamientos.getIdCongelamiento()).orElse(null);
+    public Congelamiento obtenerCongelamientoPorId(Congelamiento congelamiento) {
+        List<Congelamiento> congelamientos = congelamientosDao.obtenerCongelamientoPorId(congelamiento.getIdCongelamiento());
+        return congelamientos.isEmpty() ? null : congelamientos.get(0);
     }
 
     @Override
     @Transactional
-    public void save(Congelamiento congelamientos) {
-        congelamientosDao.save(congelamientos);
+    public void insertarCongelamiento(Congelamiento congelamientos) {
+        congelamientosDao.insertarCongelamiento(
+                congelamientos.getEstudiante().getIdEstudiante(),
+                congelamientos.getFechaComplemento());
     }
 
     @Override
     @Transactional
-    public void delete(Congelamiento congelamientos) {
-        congelamientosDao.delete(congelamientos);
+    public void actualizarCongelamiento(Congelamiento congelamientos) {
+        congelamientosDao.actualizarCongelamiento(
+                congelamientos.getIdCongelamiento(),
+                congelamientos.getEstudiante().getIdEstudiante(),
+                congelamientos.getFechaComplemento());
     }
 
     // Nuevo método para crear un congelamiento usando el procedimiento almacenado
+    
+
+    @Override
     @Transactional
-    public void crearCongelamiento(Long idCongelamiento, Long idEstudiante, String fechaComplemento) {
-        congelamientosDao.crearCongelamiento(idCongelamiento, idEstudiante, fechaComplemento);
+    public void eliminarCongelamiento(Congelamiento congelamientos) {
+        congelamientosDao.eliminarCongelamiento(congelamientos.getIdCongelamiento());
     }
 
-    // Nuevo método para actualizar un congelamiento usando el procedimiento almacenado
-    @Transactional
-    public void actualizarCongelamiento(Long idCongelamiento, Long idEstudiante, String fechaComplemento) {
-        congelamientosDao.actualizarCongelamiento(idCongelamiento, idEstudiante, fechaComplemento);
-    }
+    
 
-    // Nuevo método para eliminar un congelamiento usando el procedimiento almacenado
-    @Transactional
-    public void eliminarCongelamiento(Long idCongelamiento) {
-        congelamientosDao.eliminarCongelamiento(idCongelamiento);
-    }
-
-    // Nuevo método para obtener un congelamiento usando el procedimiento almacenado
-    @Transactional(readOnly = true)
-    public Congelamiento obtenerCongelamiento(Long idCongelamiento) {
-        return congelamientosDao.obtenerCongelamiento(idCongelamiento);
-    }
+    
+   
 }

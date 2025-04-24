@@ -46,23 +46,34 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
-                .requestMatchers("/", "/index", "/errores/**",
-                        "/layout/indexmejorado", "/pruebas/**", "/reportes/**",
-                        "/registro/**", "/js/**", "/webjars/**", "/tarea3/**")
+                .requestMatchers("/", "/index", "/errores/**",       
+                        "/js/**", "/webjars/**")
                 .permitAll()
                 .requestMatchers(
-                        "/estudiante/nuevo", "/estudiante/guardar","/estudiante/actualizar",
+                        "/estudiante/nuevo", "/estudiante/guardar", "/estudiante/actualizar",
                         "/estudiante/modificar/**", "/estudiante/eliminar/**",
-                        "/profesores/nuevo", "/profesores/guardar","/profesores/actualizar",
+                        "/profesores/nuevo", "/profesores/guardar", "/profesores/actualizar",
                         "/profesores/modificar/**", "/profesores/eliminar/**",
                         "/usuario/nuevo", "/usuario/guardar", "/usuario/actualizar",
                         "/usuario/modificar/**", "/usuario/eliminar/**",
                         "/materias/nuevo", "/materias/guardar", "/materias/actualizar",
                         "/materias/modificar/**", "/materias/eliminar/**",
-                        "/rol/nuevo", "/rol/guardar","/rol/actualizar",
+                        "/rol/nuevo", "/rol/guardar", "/rol/actualizar",
                         "/rol/modificar/**", "/rol/eliminar/**",
                         "/horarios/nuevo", "/horarios/guardar", "/horarios/actualizar",
-                        "/horarios/modificar/**", "/horarios/eliminar/**"
+                        "/horarios/modificar/**", "/horarios/eliminar/**",
+                        "/archivos/nuevo", "/archivos/guardar", "/archivos/actualizar",
+                        "/archivos/modificar/**", "/archivos/eliminar/**",
+                        "/congelamiento/nuevo", "/congelamiento/guardar", "/congelamiento/actualizar",
+                        "/congelamiento/modificar/**", "/congelamiento/eliminar/**",
+                        "/notas/nuevo", "/notas/guardar", "/notas/actualizar",
+                        "/notas/modificar/**", "/notas/eliminar/**",
+                        "/aulas/nuevo", "/aulas/guardar", "/aulas/actualizar",
+                        "/aulas/modificar/**", "/aulas/eliminar/**",
+                        "/clases/nuevo", "/clases/guardar", "/clases/actualizar",
+                        "/clases/modificar/**", "/clases/eliminar/**",
+                        "/inscripciones/nuevo", "/inscripciones/guardar", "/inscripciones/actualizar",
+                        "/inscripciones/modificar/**", "/inscripciones/eliminar/**"
                 ).hasRole("ADMIN")
                 .requestMatchers(
                         "/estudiante/listado",
@@ -70,10 +81,14 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/profesores/listado",
                         "/horarios/listado",
                         "/rol/listado",
-                        "/usuario/listado"
-                ).hasAnyRole("ADMIN", "VENDEDOR")
-                .requestMatchers("/facturar/carrito")
-                .hasRole("USER")
+                        "/usuario/listado",
+                        "/archivos/listado",
+                        "/congelamiento/listado",
+                        "/notas/listado",
+                        "/aulas/listado",
+                        "/clases/listado",
+                        "/inscripciones/listado"
+                ).hasAnyRole("ADMIN", "PROFE")
                 )
                 .formLogin((form) -> form
                 .loginPage("/login").permitAll())

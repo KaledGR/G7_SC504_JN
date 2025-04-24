@@ -12,16 +12,16 @@ public interface EstudianteService {
     
      //Se Obtiene los registros de la tabla estudiante en un ArrayList
     //de objetos estudiante, todos o solo los activos
-    public List<Estudiante> getEstudiantes();
+    public List<Estudiante> obtenerEstudiantes();
         
     
     //Recupera el ristro de la tabla estudiante en un objeto estudiante
     //si el idestudiante existe... sino devuelve null
-    public Estudiante getEstudiante(Estudiante estudiante);
+    public Estudiante obtenerEstudiantePorId(Estudiante estudiante);
     
     //Actualiza un registro en la tabla estudiante si el idestudiante existe
     //Crea un registro en la tabla estudiante si  idestudiante no tiene valor
-    public void save (Estudiante estudiante);
+    public void insertarEstudiante (Estudiante estudiante);
     
     public void actualizarEstudiante(Estudiante estudiante);
     

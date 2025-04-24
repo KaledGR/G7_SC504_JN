@@ -86,13 +86,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     
     @Override
     @Transactional
-    public void actualizarUsuario(Usuario usuario) { // se actualiza un usuario si el id del usuario NO esta vacío
-         String passwordHashed = passwordEncoder.encode(usuario.getPassword());
-         usuario.setPassword(passwordHashed);
+    public void actualizarUsuario(Usuario usuario) { // se actualiza un usuario si el id del usuario NO esta vacío      
         usuarioDao.actualizarUsuario(
                 usuario.getIdUsuario(),
                 usuario.getUsername(),
-                usuario.getPassword(),
                 usuario.getNombre(),
                 usuario.getApellidos(),
                 usuario.getCorreo(),

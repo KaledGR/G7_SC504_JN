@@ -29,9 +29,8 @@ import org.aspectj.apache.bcel.generic.LOOKUPSWITCH;
     name = "insertar_archivo",
     procedureName = "pkg_archivos.insertar_archivo",
     parameters = {
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_archivo", type = Long.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_tipo_documento", type = Long.class)
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_tipo_documento", type = String.class)
     }
 )
 @NamedStoredProcedureQuery(
@@ -40,7 +39,7 @@ import org.aspectj.apache.bcel.generic.LOOKUPSWITCH;
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_archivo", type = Long.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class),
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_tipo_documento", type = Long.class)
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_tipo_documento", type = String.class)
     }
 )
 @NamedStoredProcedureQuery(
@@ -67,7 +66,7 @@ public class Archivos implements Serializable {
     @JoinColumn(name = "id_estudiante", nullable = false)
     private Estudiante estudiante;
 
-    @Column(name = "tipoDocumento")
+    @Column(name = "tipo_Documento")
     private String tipoDocumento;
     
     

@@ -33,7 +33,7 @@ public class ArchivosController {
         model.addAttribute("archivos", lista);
         model.addAttribute("totalArchivos", lista.size());
 
-        var estudiantes = estudianteService.getEstudiantes();
+        var estudiantes = estudianteService.obtenerEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
 
         
@@ -44,7 +44,7 @@ public class ArchivosController {
     @PostMapping("/guardar")
     public String guardar(Archivos archivos) {
 
-        archivosService.save(archivos);
+        archivosService.insertarArchivo(archivos);
         return "redirect:/archivos/listado";
     }
 
@@ -53,13 +53,20 @@ public class ArchivosController {
         archivosService.delete(archivos);
         return "redirect:/archivos/listado";
     }
+    
+     @PostMapping("/actualizar")
+    public String actualizar(Archivos archivo){
+    
+            archivosService.actualizarArchivo(archivo);
+            return "redirect:/archivos/listado";
+    }
 
     @GetMapping("/modificar/{idArchivo}")
     public String modificar(Archivos archivo, Model model) {
         archivo = archivosService.getArchivo(archivo);
         model.addAttribute("archivo", archivo);
         
-         var estudiantes = estudianteService.getEstudiantes();
+         var estudiantes = estudianteService.obtenerEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
         
         return "/archivos/modifica";

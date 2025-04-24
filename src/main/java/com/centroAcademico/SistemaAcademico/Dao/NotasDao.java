@@ -10,16 +10,18 @@ import java.util.List;
 
 public interface NotasDao extends JpaRepository<Notas, Long> {
 
-    @Procedure(name = "insertar_notas")
-    void insertarNotas(
-        @Param("p_id_nota") Long idNota,
+    @Procedure(name = "obtener_notas")
+    List<Notas> obtenerNotas();
+    
+   @Procedure(name = "insertar_nota")
+   List<Notas> insertarNotas(
         @Param("p_id_profesor") Long idProfesor,
         @Param("p_id_materia") Long idMateria, // Cambiado de Double a Long
         @Param("p_id_estudiante") Long idEstudiante, // Cambiado de Double a Long
         @Param("p_calificacion") BigDecimal calificacion
     );
 
-    @Procedure(name = "actualizar_notas")
+    @Procedure(name = "actualizar_nota")
     void actualizarNotas(
         @Param("p_id_nota") Long idNota,
         @Param("p_id_profesor") Long idProfesor,
@@ -28,7 +30,7 @@ public interface NotasDao extends JpaRepository<Notas, Long> {
         @Param("p_calificacion") BigDecimal calificacion
     );
 
-    @Procedure(name = "eliminar_notas")
+    @Procedure(name = "eliminar_nota")
     void eliminarNotas(@Param("p_id_nota") Long idNota); // Corregido el nombre del parámetro
 
     @Procedure(name = "obtener_nota_por_id")
