@@ -88,7 +88,8 @@ public class Profesores implements Serializable {
     @OneToMany(mappedBy = "profesor")
     private List<Notas> notas;
 
-     //Pruebas por error de compilación - Anthony
+  
+     
    
     
 }

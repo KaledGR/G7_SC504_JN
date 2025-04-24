@@ -15,8 +15,8 @@ import java.io.Serializable;
     )
 
 @NamedStoredProcedureQuery(
-    name = "obtener_inscripciones_por_id",
-    procedureName = "pkg_inscripciones.obtener_inscripciones_por_id",
+    name = "obtener_inscripcion_por_id",
+    procedureName = "pkg_inscripciones.obtener_inscripcion_por_id",
     resultClasses = Inscripciones.class,
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_inscripcion", type = Integer.class),
@@ -25,8 +25,8 @@ import java.io.Serializable;
 )
 
 @NamedStoredProcedureQuery(
-    name = "crear_inscripcion",
-    procedureName = "pkg_inscripciones.crear_inscripcion",
+    name = "insertar_inscripcion",
+    procedureName = "pkg_inscripciones.insertar_inscripcion",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_materia", type = Long.class),
             @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_estudiante", type = Long.class)
@@ -34,7 +34,7 @@ import java.io.Serializable;
 )
 @NamedStoredProcedureQuery(
     name = "actualizar_inscripcion",
-    procedureName = "pkg_inscripciones.actualizar",
+    procedureName = "pkg_inscripciones.actualizar_inscripcion",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_inscripcion", type = Long.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_materia", type = Long.class),
@@ -43,7 +43,7 @@ import java.io.Serializable;
 )
 @NamedStoredProcedureQuery(
     name = "eliminar_inscripcion",
-    procedureName = "pkg_inscripciones.eliminar",
+    procedureName = "pkg_inscripciones.eliminar_inscripcion",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_inscripcion", type = Long.class)
     }
@@ -70,29 +70,29 @@ public class Inscripciones implements Serializable{
     
     // Getters y Setters
 
-    public Long getIdInscripcion() {
-        return idInscripcion;
-    }
-
-    public void setIdInscripcion(Long idInscripcion) {
-        this.idInscripcion = idInscripcion;
-    }
-
-    public Materias getMateria() {
-        return materia;
-    }
-
-    public void setMateria(Materias materia) {
-        this.materia = materia;
-    }
-
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
+//    public Long getIdInscripcion() {
+//        return idInscripcion;
+//    }
+//
+//    public void setIdInscripcion(Long idInscripcion) {
+//        this.idInscripcion = idInscripcion;
+//    }
+//
+//    public Materias getMateria() {
+//        return materia;
+//    }
+//
+//    public void setMateria(Materias materia) {
+//        this.materia = materia;
+//    }
+//
+//    public Estudiante getEstudiante() {
+//        return estudiante;
+//    }
+//
+//    public void setEstudiante(Estudiante estudiante) {
+//        this.estudiante = estudiante;
+//    }
     
    
     

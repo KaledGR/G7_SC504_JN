@@ -20,7 +20,7 @@ public interface ProfesoresDao extends JpaRepository<Profesores, Long> {
 
     @Procedure(name = "insertar_profesor")
     void insertarProfesor(
-            @Param("p_cedula") String cedula,
+            @Param("p_cedula_profesor") String cedulaProfesor,
             @Param("p_nombre") String nombre,
             @Param("p_apellido") String apellido,
             @Param("p_codigo_profesor") String codigoProfesor

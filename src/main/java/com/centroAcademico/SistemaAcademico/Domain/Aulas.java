@@ -5,6 +5,7 @@ import lombok.Data;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @NamedStoredProcedureQuery ( // se definen los procedimientos almacenados que se van a utilizar 
@@ -27,17 +28,16 @@ import java.time.LocalDate;
 )
 
 @NamedStoredProcedureQuery(
-    name = "crear",
-    procedureName = "pkg_aulas.crear",
+    name = "insertar_aula",
+    procedureName = "pkg_aulas.insertar_aula",
     parameters = {
-        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_aula", type = Long.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_numero_Aula", type = String.class),
             @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_capacidad", type = Integer.class)
     }
 )
 @NamedStoredProcedureQuery(
-    name = "actualizar",
-    procedureName = "pkg_aulas.actualizar",
+    name = "actualizar_aula",
+    procedureName = "pkg_aulas.actualizar_aula",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_aula", type = Long.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_numero_Aula", type = String.class),
@@ -45,15 +45,15 @@ import java.time.LocalDate;
     }
 )
 @NamedStoredProcedureQuery(
-    name = "eliminar",
-    procedureName = "pkg_aulas.eliminar",
+    name = "eliminar_aula",
+    procedureName = "pkg_aulas.eliminar_aula",
     parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_id_aula", type = Long.class)
     }
 )
 
 @Data
-@Table(name = "Aulas")
+@Table(name = "aulas")
 public class Aulas implements Serializable{
     private static final long serialVersionUID = 1L;
     
@@ -66,30 +66,34 @@ public class Aulas implements Serializable{
     private String numeroAula;
     
     @Column(name = "capacidad", nullable = false)
-    private Integer capacidad;
+    private int capacidad;
+    
+    
+    
+    
     
     //Pruebas por error de compilación - Anthony
-    public Long getIdAula() {
-        return idAula;
-    }
-
-    public void setIdAula(Long idAula) {
-        this.idAula = idAula;
-    }
-
-    public String getNumeroAula() {
-        return numeroAula;
-    }
-
-    public void setNumeroAula(String numeroAula) {
-        this.numeroAula = numeroAula;
-    }
-
-    public Integer getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(Integer capacidad) {
-        this.capacidad = capacidad;
-    }
+//    public Long getIdAula() {
+//        return idAula;
+//    }
+//
+//    public void setIdAula(Long idAula) {
+//        this.idAula = idAula;
+//    }
+//
+//    public String getNumeroAula() {
+//        return numeroAula;
+//    }
+//
+//    public void setNumeroAula(String numeroAula) {
+//        this.numeroAula = numeroAula;
+//    }
+//
+//    public Integer getCapacidad() {
+//        return capacidad;
+//    }
+//
+//    public void setCapacidad(Integer capacidad) {
+//        this.capacidad = capacidad;
+//    }
 }

@@ -18,14 +18,14 @@ public class AulasServiceImpl implements AulasService{
     @Transactional(readOnly=true)
     public List<Aulas> getAulas() {
         //var lista = aulasDao.findAll();
-        var lista = aulasDao.getAulas();
+        var lista = aulasDao.obtenerAulas();
         return lista;
     }
     
     @Override
     @Transactional(readOnly=true)
     public Aulas getAula(Aulas aula) {
-       List<Aulas> aulas = aulasDao.getAula(aula.getIdAula());
+       List<Aulas> aulas = aulasDao.obtenerAulaPorId(aula.getIdAula());
         return aulas.isEmpty() ? null : aulas.get(0);
     }
 
@@ -33,7 +33,6 @@ public class AulasServiceImpl implements AulasService{
     @Transactional
     public void insertarAula(Aulas aulas) {
         aulasDao.insertarAula(
-                aulas.getIdAula(),
                 aulas.getNumeroAula(),
                 aulas.getCapacidad()
                 );
