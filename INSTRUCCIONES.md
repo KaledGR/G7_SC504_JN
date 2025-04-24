@@ -33,8 +33,8 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado en t
 SistemaAcademico/
 │
 ├── SQL/
-│   ├── 01_tablas_inserts.sql         # Script para crear tablas e insertar datos
-│   └── 02_paquetes_procedimientos.sql # Script para crear paquetes y procedimientos
+│   ├── Script_CentroAcademico.sql         # Script para crear tablas e insertar datos
+│   └── Script_CA_Paquetes.sql # Script para crear paquetes y procedimientos
 │
 ├── src/
 │   └── main/
