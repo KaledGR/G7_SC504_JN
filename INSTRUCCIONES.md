@@ -68,14 +68,14 @@ SistemaAcademico/
 4. En el archivo `application.properties`, configura tu conexión a la base de datos Oracle:
 
 ```properties
-spring.datasource.url=jdbc:oracle:thin:@localhost:1521/XEPDB1
-spring.datasource.username=tu_usuario
-spring.datasource.password=tu_contraseña
-spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl
+spring.datasource.username=centro_Academico
+spring.datasource.password=toad
+spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
 ```
 
 5. Ejecuta el proyecto con Spring Boot (`Run Application` o `mvn spring-boot:run`).
-6. Accede a la aplicación desde el navegador en: [http://localhost:8080](http://localhost:8080)
+6. Accede a la aplicación desde el navegador en: [http://localhost:80](http://localhost:80)
 
 ---
 
