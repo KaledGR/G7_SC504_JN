@@ -1,9 +1,4 @@
 -- ==========================
------Script Creacion de Objetos y Esquema Proyecto Centro Academico------
--- ==========================
-
-
--- ==========================
 -----Script Creacion Esquema Base de Datos------
 -- ==========================
 
@@ -41,6 +36,7 @@ CREATE TABLE Estudiantes (
     apellido VARCHAR(255),
     direccion VARCHAR(255),
     telefono VARCHAR(20),
+	codigo_estudiante VARCHAR(20),
     correo_electronico VARCHAR(100)
 );
 
@@ -48,7 +44,7 @@ CREATE TABLE Estudiantes (
 CREATE TABLE Archivos (
     id_archivo INT PRIMARY KEY,
     id_estudiante INT,
-    tipoDocumento VARCHAR(255),
+    tipo_Documento VARCHAR(255),
     FOREIGN KEY (id_estudiante) REFERENCES Estudiantes(id_estudiante) ON DELETE CASCADE
 );
 
@@ -57,6 +53,7 @@ CREATE TABLE Profesores (
     id_profesor INT PRIMARY KEY,
     cedula_profesor VARCHAR(10),
     nombre VARCHAR(255),
+	codigo_profesor VARCHAR(20),
     apellido VARCHAR(255)
 );
 
@@ -64,13 +61,14 @@ CREATE TABLE Profesores (
 CREATE TABLE Materias (
     id_materia INT PRIMARY KEY,
     nombre_materia VARCHAR(255),
+	codigo_materia VARCHAR(20),
     descripcion VARCHAR(255)
 );
 
 -- Tabla de Aulas
 CREATE TABLE Aulas (
     id_aula INT PRIMARY KEY,
-    numeroAula VARCHAR(50),
+    numero_Aula VARCHAR(50),
     capacidad INT
 );
 
@@ -79,9 +77,9 @@ CREATE TABLE Horarios (
     id_horario INT PRIMARY KEY,
     id_profesor INT,
     id_materia INT,
-    diaSemana VARCHAR(10),
-    horarioInc TIMESTAMP,
-    horarioFin TIMESTAMP,
+    dia_Semana VARCHAR(10),
+    horario_Inc TIMESTAMP,
+    horario_Fin TIMESTAMP,
     FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor) ON DELETE CASCADE,
     FOREIGN KEY (id_materia) REFERENCES Materias(id_materia) ON DELETE CASCADE
 );
@@ -101,9 +99,10 @@ CREATE TABLE Clases (
 
 -- Tabla de Inscripciones de Estudiantes en Materias
 CREATE TABLE Inscripciones (
+    id_inscripcion INT,
     id_materia INT,
     id_estudiante INT,
-    PRIMARY KEY (id_materia, id_estudiante),
+    PRIMARY KEY (id_inscripcion),
     FOREIGN KEY (id_estudiante) REFERENCES Estudiantes(id_estudiante) ON DELETE CASCADE,
     FOREIGN KEY (id_materia) REFERENCES Materias(id_materia) ON DELETE CASCADE
 );
@@ -142,7 +141,7 @@ CREATE TABLE Usuarios (
 -- Tabla de Roles asignados a los Usuarios
 CREATE TABLE Rol (
     id_rol INT PRIMARY KEY,
-    nombreRol VARCHAR(255),
+    nombre_rol VARCHAR(255),
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE
 );
@@ -250,6 +249,42 @@ BEGIN
 END;
 /
 
+-- Crear secuencia
+CREATE SEQUENCE seq_aulas START WITH 1 INCREMENT BY 1;
+
+-- Crear trigger
+CREATE OR REPLACE TRIGGER trg_aulas
+BEFORE INSERT ON Aulas
+FOR EACH ROW
+BEGIN
+    :NEW.id_aula := seq_aulas.NEXTVAL;
+END;
+/
+
+
+-- Crear secuencia
+CREATE SEQUENCE seq_clases START WITH 1 INCREMENT BY 1;
+
+-- Crear trigger
+CREATE OR REPLACE TRIGGER trg_clases
+BEFORE INSERT ON Clases
+FOR EACH ROW
+BEGIN
+    :NEW.id_clase := seq_clases.NEXTVAL;
+END;
+/
+
+-- Crear secuencia
+CREATE SEQUENCE seq_inscripciones START WITH 1 INCREMENT BY 1;
+
+-- Crear trigger
+CREATE OR REPLACE TRIGGER trg_inscripciones
+BEFORE INSERT ON Inscripciones
+FOR EACH ROW
+BEGIN
+    :NEW.id_inscripcion := seq_inscripciones.NEXTVAL;
+END;
+/
 
 -- ==========================
 -- CREACIÓN DE PROCEDURES PROYECTO BASE DE DATOS
@@ -587,12 +622,12 @@ JOIN Estudiantes e ON e.id_estudiante = n.id_estudiante;
 
 -- Vista de aulas y su capacidad
 CREATE OR REPLACE VIEW vista_aulas_capacidad AS
-SELECT a.numeroAula, a.Capacidad
+SELECT a.numero_Aula, a.Capacidad
 FROM Aulas a;
 
 -- Vista de estudiantes con congelamientos
 CREATE OR REPLACE VIEW vista_estudiantes_congelados AS
-SELECT e.nombre, e.apellido, c.fechaComplemento
+SELECT e.nombre, e.apellido, c.fecha_Complemento
 FROM Estudiantes e
 JOIN Congelamiento c ON e.id_estudiante = c.id_estudiante;
 
@@ -613,7 +648,7 @@ JOIN Materias m ON m.id_materia = n.id_materia;
 
 -- Vista de clases y sus detalles
 CREATE OR REPLACE VIEW vista_clases_detalles AS
-SELECT c.id_clase, c.id_horario, a.numeroAula, p.nombre AS profesor, m.nombre_materia
+SELECT c.id_clase, c.id_horario, a.numero_Aula, p.nombre AS profesor, m.nombre_materia
 FROM Clases c
 JOIN Aulas a ON a.id_aula = c.id_aula
 JOIN Profesores p ON p.id_profesor = c.id_profesor
@@ -621,10 +656,10 @@ JOIN Materias m ON m.id_materia = c.id_materia;
 
 -- Vista de aulas ocupadas
 CREATE OR REPLACE VIEW vista_aulas_ocupadas AS
-SELECT a.numeroAula, COUNT(c.id_clase) AS clases_ocupando
+SELECT a.numero_Aula, COUNT(c.id_clase) AS clases_ocupando
 FROM Aulas a
 JOIN Clases c ON a.id_aula = c.id_aula
-GROUP BY a.numeroAula;
+GROUP BY a.numero_Aula;
 
 -- Vista de profesores con materias que imparten
 CREATE OR REPLACE VIEW vista_profesores_materias AS
@@ -656,7 +691,7 @@ JOIN Estudiantes e ON e.id_estudiante = n.id_estudiante;
 
 -- Vista de aulas y su capacidad
 CREATE OR REPLACE VIEW vista_aulas_capacidad AS
-SELECT a.numeroAula, a.Capacidad
+SELECT a.numero_Aula, a.Capacidad
 FROM Aulas a;
 
 -- Vista de estudiantes con congelamientos
@@ -682,7 +717,7 @@ JOIN Materias m ON m.id_materia = n.id_materia;
 
 -- Vista de clases y sus detalles
 CREATE OR REPLACE VIEW vista_clases_detalles AS
-SELECT c.id_clase, c.id_horario, a.numeroAula, p.nombre AS profesor, m.nombre_materia
+SELECT c.id_clase, c.id_horario, a.numero_Aula, p.nombre AS profesor, m.nombre_materia
 FROM Clases c
 JOIN Aulas a ON a.id_aula = c.id_aula
 JOIN Profesores p ON p.id_profesor = c.id_profesor
@@ -690,10 +725,10 @@ JOIN Materias m ON m.id_materia = c.id_materia;
 
 -- Vista de aulas ocupadas
 CREATE OR REPLACE VIEW vista_aulas_ocupadas AS
-SELECT a.numeroAula, COUNT(c.id_clase) AS clases_ocupando
+SELECT a.numero_Aula, COUNT(c.id_clase) AS clases_ocupando
 FROM Aulas a
 JOIN Clases c ON a.id_aula = c.id_aula
-GROUP BY a.numeroAula;
+GROUP BY a.numero_Aula;
 
 -- Vista de profesores con materias que imparten
 CREATE OR REPLACE VIEW vista_profesores_materias AS
@@ -761,7 +796,7 @@ END obtener_calificacion_estudiante;
 CREATE OR REPLACE FUNCTION obtener_nombre_aula (p_id_aula INT) RETURN VARCHAR2 IS
     v_nombre_aula VARCHAR2(50);
 BEGIN
-    SELECT a.numeroAula
+    SELECT a.numero_Aula
     INTO v_nombre_aula
     FROM Aulas a
     WHERE a.id_aula = p_id_aula;
@@ -878,7 +913,7 @@ END obtener_clases_aula;
 CREATE OR REPLACE FUNCTION obtener_horario_clase (p_id_clase INT) RETURN VARCHAR2 IS
     v_horario VARCHAR2(255);
 BEGIN
-    SELECT 'De ' || TO_CHAR(h.horarioInc, 'HH:MI AM') || ' a ' || TO_CHAR(h.horarioFin, 'HH:MI AM')
+    SELECT 'De ' || TO_CHAR(h.horario_Inc, 'HH:MI AM') || ' a ' || TO_CHAR(h.horario_Fin, 'HH:MI AM')
     INTO v_horario
     FROM Horarios h
     WHERE h.id_horario = (SELECT id_horario FROM Clases WHERE id_clase = p_id_clase);
